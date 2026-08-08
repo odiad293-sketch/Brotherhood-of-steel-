@@ -1,0 +1,97 @@
+.alliance-field-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.right-component{
+  color:rgba(188, 32, 32, 1);
+  font-size:15px;
+  margin-left: -10px;
+}
+.nav-field{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+  margin-right:5px ;
+}
+.red-icons{
+color:rgba(133, 28, 28, 1);
+}
+.left-component a{
+  font-size: 13px;
+  text-decoration: none;
+}
+.view-all{
+  color: white;
+}
+.nav-arrow{
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid rgba(133, 28, 28, 1);
+  border-right: 2px solid rgba(133, 28, 28, 1);
+  transform: rotate(45deg);
+}
+.main-field-container{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-top: 10px;
+  padding:10px;
+  padding-bottom: 10px;
+  gap: 16px;
+  border: 1px solid rgb(191,15,15);
+  align-items: center;
+}
+.alliance-field{
+  background-color:rgba(0, 0, 0, 0.98) ;
+  color: white;
+  gap: 8px;
+  border: 1px solid rgb(191,15,15);
+  padding: 5px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+.field-container{
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(191, 15, 15, 0.72);
+  align-items: center;
+  width: 100%;
+  gap: 2px;
+  padding-right: 8px;
+}
+.field-container-right-border{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+   gap:2px;
+}
+.field-icons span{
+ color:rgba(147, 5, 5, 1);
+ font-size: 30px;
+}
+.field-icons-white span{
+  color: white;
+  font-size: 30px;
+}
+.field-title{
+  display:flex;
+  font-size: 8px;
+  white-space: nowrap;
+  color:rgba(151, 151, 151, 1);
+}
+.field-body{
+  font-size: 10px;
+  font-weight: bold;
+}
+.field-title-wrap{
+  display:flex;
+  font-size: 8px;
+  white-space: nowrap;
+  padding-right: 10px;
+  color:rgba(151, 151, 151, 1);
+}
+

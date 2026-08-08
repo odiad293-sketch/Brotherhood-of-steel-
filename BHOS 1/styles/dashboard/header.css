@@ -1,0 +1,126 @@
+/* ======================================
+   HEADER STYLES and general style
+   ====================================== */
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 100;
+
+  height: 54px;
+
+  gap: 8px;
+  padding: 0 10px;
+
+  background-color: black;
+  padding-right:30px;
+}
+
+.logo-image{
+  width: 40px;
+}
+
+.alliance-name{
+  flex: 1;
+  min-width: 0;
+}
+
+.red-icons{
+  color: #d83b3b;
+  font-size: 30px;
+  margin-left: 5px;
+}
+
+.icon-container{
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 1;
+}
+
+.alliance-name p{
+  margin: 0;
+
+  font-family: "Cinzel", serif;
+  font-size: 1rem;
+  font-weight: 800;
+  font-style: italic;
+
+  color: white;
+
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.left-component{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  min-width: 5px;
+  gap: 4px;
+}
+
+.logo-container{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.right-component{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  min-width: 10px;
+
+  gap: 5px;
+}
+
+.search-button{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.White-icons{
+  color: white;
+  font-size: 30px;
+  margin-left: 5px;
+}
+
+.search-button:active,
+.icon-container:active{
+  background-color: rgba(200,200,200,.15);
+  border-radius: 50%;
+}
+
+.notification-container{
+  position: relative;
+}
+
+.notification-badge{
+  position: absolute;
+
+  top: -2px;
+  right: 4px;
+
+  background-color: rgb(174,33,33);
+  color: white;
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+
+  padding: 1px 4px;
+
+  border-radius: 50%;
+}

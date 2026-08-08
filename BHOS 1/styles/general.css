@@ -1,0 +1,25 @@
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+html,body{
+  min-height:100%;
+  margin-left: 1px;
+}
+body {
+  background-color: #090b10;
+  background-image: url("../images/auth-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-family: "Inter", sans-serif;
+}
+
+img{
+  display:block;
+  max-width:100%;
+  height:auto;
+}
+

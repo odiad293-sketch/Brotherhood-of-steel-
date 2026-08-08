@@ -1,0 +1,114 @@
+.statistics-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width:100%;
+  width: 115px;
+  height: 80px;
+  flex-shrink: 0;
+  align-items: center;
+  gap:4px;
+  padding:0px;
+
+  border: 1px solid rgb(191,15,15);
+  background-color: rgba(0,0,0,.85);
+
+  border-radius: 12px;
+  color: white;
+  font-size: 10px;
+}
+.statistics-card-header{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom:4px;
+}
+.statistics-icon{
+  border: 1px solid rgb(191,15,15);
+  background-color: rgba(0,0,0,.85);
+
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(191,15,15,.7);
+  padding-right: 5px;
+  padding-top: 2px
+}
+.stats-icon{
+align-items: center;
+font-size: 20px;
+
+}
+.statistics-value{
+  font-weight: bold;
+  font-size: 20px;
+}
+.statistics-title{
+  font-size: 10px;
+}
+.statistics-status{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.statistics-status-text{
+  color: #22c55e;
+}
+.statistics-status-text-red{
+  color: red;
+}
+.triangle-indicator-red{
+  width: 0;
+  height: 0;
+
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid red;
+}
+.triangle-indicator{
+  width: 0;
+  height: 0;
+
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 8px solid #22c55e;
+}
+.circle{
+  width: 18px;
+  height: 18px;
+
+  background-color: #22c55e;
+
+  border: 3px solid #111;
+
+  border-radius: 50%;
+  }
+.statistics-card-body{
+  display:flex;
+  justify-content: center;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  }
+
+.statistics-section{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  justify-items: center; /* Horizontal */
+  align-items: center;   /* Vertical */
+}
+
+.statistics-card-bottom{
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  margin-top:5px;
+  align-items: center;   /* Vertical */
+}
+.stats-container{
+  background-color:rgba(0, 0, 0, 0.98);
+  padding:10px;
+  padding-left: 5px;
+  border-radius:10px;
+  margin-top:4px;
+  border:1px solid red;
+  box-shadow: 0 4px 12px rgba(183, 28, 28, 0.35);
+}
