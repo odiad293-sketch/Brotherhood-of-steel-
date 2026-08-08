@@ -1,0 +1,41 @@
+.alliance-update-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  gap: 6px;
+}
+.right-news-component{
+  color:rgba(188, 32, 32, 1);
+  font-size:10px;
+  font-weight: bold;
+}
+.main-body-container{
+ border: 1px solid rgb(191,15,15);
+ border-radius: 10px;
+ background-color: rgba(0, 0, 0, 0.98);
+ width: 100%;
+ padding: 5px;
+}
+.news-and-update{
+  display: flex;
+  flex-direction:row;
+  margin-top: 7px;
+  gap: 5px;
+  justify-content: space-between;
+}
+.update-container{
+  border-radius: 8px;
+  border: 1px solid rgb(191,15,15);
+  color: white;
+  padding: 5px;
+  
+}
+.news-icon span{
+  font-size: 30px;
+  color:rgba(101, 170, 107, 1);
+  border: 1px solid rgb(191,15,15);
+  background-color: rgba(0,0,0,.85);
+  box-shadow: 0 0 10px rgba(191,15,15,.7);
+  border-radius: 50%;
+}
