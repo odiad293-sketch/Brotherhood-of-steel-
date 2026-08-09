@@ -1,3 +1,9 @@
+html,body{
+  min-height:100%;
+  margin-left: 1px;
+  padding-bottom: 23px;
+}
+
 .alliance-update-header{
   display: flex;
   justify-content: space-between;
@@ -7,8 +13,9 @@
 }
 .right-news-component{
   color:rgba(188, 32, 32, 1);
-  font-size:10px;
+  font-size:8px;
   font-weight: bold;
+  white-space: nowrap;
 }
 .main-body-container{
  border: 1px solid rgb(191,15,15);
@@ -32,10 +39,98 @@
   
 }
 .news-icon span{
-  font-size: 30px;
+  font-size: 20px;
   color:rgba(101, 170, 107, 1);
   border: 1px solid rgb(191,15,15);
   background-color: rgba(0,0,0,.85);
-  box-shadow: 0 0 10px rgba(191,15,15,.7);
+  box-shadow: 0 0 10px rgba(191, 15, 15, 0.33);
   border-radius: 50%;
+}
+.content{
+  display:flex;
+  font-size: 8px;
+  }
+  .news{
+    display:flex;
+    align-items: center;
+    gap:8px;
+    border-bottom: 1px solid rgba(191, 15, 15, 0.19);
+  }
+  .time-stamp{
+    font-size: 5px;
+    color:rgba(158, 159, 168, 1);
+    white-space: nowrap;
+  }
+  .update-content{
+    display:flex;
+    font-size: 8px;
+  }
+  .time-update{
+    font-size: 5px;
+    color:rgba(158, 159, 168, 1);
+    white-space: nowrap;
+  }
+  .updates{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+    border-bottom: 1px solid rgba(191, 15, 15, 0.19);
+    
+  }
+  .update-body{
+    display:flex;
+    flex-direction:column;
+    gap: 3px;
+  }
+  .update-container{
+    display: flex;
+    flex-direction: column;
+  }
+.time-stamp {
+  margin-left: auto;
+}
+
+
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 100;
+
+  height: 40px;
+
+
+  background-color: black;
+  padding-right:10px;
+  border: 1px solid rgb(191,15,15);
+  border-radius: 8px;
+  margin-left: 1px;
+}
+.logo-footer-img img{
+  width: 30px;
+}
+.right-footer-section{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 3px;
+}
+.quoted{
+  color: White;
+  font-size:8px ;
+}
+.footer-content{
+  display: flex;
+  align-items: center;
+  margin-top:5px;
+  flex-direction: row;
+}
+.left-footer-section{
+  color: White;
+  font-size:8px ;
+  margin-left: auto;
 }

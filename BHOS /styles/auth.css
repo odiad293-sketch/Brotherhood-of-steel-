@@ -27,6 +27,12 @@ header{
   opacity: 0.6;
 }
 
+.strap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .second-write-up{
   text-align:center;
   max-width:420px;
@@ -37,7 +43,7 @@ main{
   align-items:center;
   padding:1rem;
 }
-.container{width:100%;max-width:560px;}
+.container{width:100%}
 .main-signUp-container{
   background:rgba(10,12,18,.88);
   border:1px solid rgba(255,255,255,.12);
@@ -70,6 +76,11 @@ main{
   font-size: 0.7rem;
   margin-bottom: 0.4rem;
   color:rgba(207, 207, 209, 1);
+  white-space: nowrap;
+}
+
+.timezone-selection{
+  margin-left: auto;
 }
 
 
