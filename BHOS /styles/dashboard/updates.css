@@ -26,7 +26,7 @@ html,body{
 }
 .news-and-update{
   display: flex;
-  flex-direction:row;
+  flex-direction:column;
   margin-top: 7px;
   gap: 5px;
   justify-content: space-between;
@@ -36,6 +36,8 @@ html,body{
   border: 1px solid rgb(191,15,15);
   color: white;
   padding: 5px;
+  overflow-y: auto;
+  max-height: 100px;
   
 }
 .news-icon span{
@@ -57,13 +59,13 @@ html,body{
     border-bottom: 1px solid rgba(191, 15, 15, 0.19);
   }
   .time-stamp{
-    font-size: 5px;
+    font-size: 8px;
     color:rgba(158, 159, 168, 1);
     white-space: nowrap;
   }
   .update-content{
     display:flex;
-    font-size: 8px;
+    font-size: 10px;
   }
   .time-update{
     font-size: 5px;

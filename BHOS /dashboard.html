@@ -4,318 +4,577 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  
   <link rel="stylesheet" href="styles/general.css">
   <link rel="stylesheet" href="styles/dashboard/header.css">
   <link rel="stylesheet" href="styles/dashboard/hero.css">
   <link rel="stylesheet" href="styles/dashboard/stats.css">
   <link rel="stylesheet" href="styles/dashboard/field.css">
   <link rel="stylesheet" href="styles/dashboard/updates.css">
-  
+  <link rel="stylesheet" href="styles/dashboard/sidebar.css">
+ 
   <title>dashboard page</title>
 </head>
 
 <body>
+  
   <header>
+    
     <div class="left-component">
+      
       <button class="icon-container">
-        <span class=" red-icons material-symbols-outlined">
+        <span class="red-icons material-symbols-outlined">
           menu
         </span>
       </button>
+      
       <div class="logo-container">
+        
         <img src="images/BHOS-log.png" alt="logo" class="logo-image" />
+        
         <div class="alliance-name">
           <p>BROTHERHOOD OF STEEL</p>
         </div>
+        
       </div>
+      
     </div>
+    
+    
     <div class="right-component">
+      
       <button class="search-button">
-        <span class=" White-icons material-symbols-outlined">
+        <span class="White-icons material-symbols-outlined">
           search
         </span>
       </button>
       
-      <button class="icon-container notification-container ">
+      
+      <button class="icon-container notification-container">
+      
         <span class="White-icons material-symbols-outlined">
           notifications
         </span>
+        
         <div class="notification-badge">
           3
         </div>
+        
       </button>
       
     </div>
     
   </header>
+  
+  
   <main>
-    <div class="sidebar">
-      
-    </div>
+    
+    <!-- HERO SECTION -->
+    
     <div class="hero-section">
+      
       <div class="main-container">
+        
         <div class="container-header">
+          
           <div class="logo-wrapper">
+            
             <div class="logo-border">
+              
               <img class="logo-image2" src="images/BHOS-log.png">
-            </div>
-            <div class="online-badge"></div>
-          </div>
-          <div class="right-section">
-            <div class="welcome-message">
-              <p class="welcome">Welcome back,</p>
-              <p class="user-name">Odia Etiosa</p>
+              
             </div>
             
+            <div class="online-badge"></div>
+            
+          </div>
+          
+          
+          <div class="right-section">
+            
+            <div class="welcome-message">
+              
+              <p class="welcome">
+                Welcome back,
+              </p>
+              
+              <p class="user-name">
+                Odia Etiosa
+              </p>
+              
+            </div>
+            
+            
             <div class="user-rank">
+              
               <span class="red-icons material-symbols-outlined">
                 shield
               </span>
+              
               <div class="rank">
                 knight
               </div>
+              
             </div>
             
+            
             <div class="alliance-quote">
-              <p class="quoted">"Strength in unity. victory through steel."</p>
+              
+              <p class="quoted">
+                "Strength in unity. victory through steel."
+              </p>
+              
             </div>
+            
           </div>
           
+          
           <div class="Left-section">
+            
             <div class="location-details">
+              
               <span class="White-icons material-symbols-outlined">
               </span>
-              <p class="current-time">6:06PM</p>
-              <p class="current-date">sun, jul 27, 2026</p>
+              
+              <p class="current-time">
+                6:06PM
+              </p>
+              
+              <p class="current-date">
+                sun, jul 27, 2026
+              </p>
+              
             </div>
+            
+            
             <div class="container-time-zone">
+              
               <span class="White-icons material-symbols-outlined">
+              
                 language
+                
                 <span class="current-time-zone">
                   UTC +1
                 </span>
+                
               </span>
+              
             </div>
             
           </div>
+          
         </div>
+        
       </div>
+      
     </div>
     
+    
+    <!-- STATISTICS + ALLIANCE FIELD -->
+    
     <div class="main-container-2">
+      
+      
+      <!-- STATISTICS -->
+      
       <div class="stats-container">
+        
         <div class="statistics-section">
+          
+          
+          <!-- CARD 1 -->
+          
           <div class="statistics-card">
             
             <div class="statistics-card-header">
+              
               <div class="statistics-icon">
+                
                 <span class="stats-icon White-icons material-symbols-outlined">
                   groups
                 </span>
+                
               </div>
               
-              <p class="statistics-value">128</p>
+              <p class="statistics-value">
+                128
+              </p>
+              
             </div>
             
+            
             <div class="statistics-card-body">
-              <p class="statistics-title">Alliance Members</p>
+              
+              <p class="statistics-title">
+                Alliance Members
+              </p>
               
               <div class="statistics-status">
+                
                 <div class="triangle-indicator"></div>
-                <p class="statistics-status-text">12 new</p>
+                
+                <p class="statistics-status-text">
+                  12 new
+                </p>
+                
               </div>
+              
             </div>
             
           </div>
           
+          
+          <!-- CARD 2 -->
+          
           <div class="statistics-card">
             
             <div class="statistics-card-header">
+              
               <div class="statistics-icon">
+                
                 <span class="stats-icon White-icons material-symbols-outlined">
                   crown
                 </span>
+                
               </div>
               
-              <p class="statistics-value">#24</p>
+              <p class="statistics-value">
+                #24
+              </p>
+              
             </div>
             
+            
             <div class="statistics-card-body">
-              <p class="statistics-title">Alliance Rank Global</p>
+              
+              <p class="statistics-title">
+                Alliance Rank Global
+              </p>
               
               <div class="statistics-status">
+                
                 <p class="statistics-status-text"></p>
+                
               </div>
+              
             </div>
             
           </div>
           
+          
+          <!-- CARD 3 -->
+          
           <div class="statistics-card">
             
             <div class="statistics-card-header">
+              
               <div class="statistics-icon">
+                
                 <span class="stats-icon White-icons material-symbols-outlined">
                   shield
                 </span>
+                
               </div>
               
-              <p class="statistics-value">58</p>
+              <p class="statistics-value">
+                58
+              </p>
+              
             </div>
             
+            
             <div class="statistics-card-body">
-              <p class="statistics-title">Members online Now</p>
+              
+              <p class="statistics-title">
+                Members online Now
+              </p>
               
               <div class="statistics-status">
+                
                 <div class="triangle-indicator"></div>
-                <p class="statistics-status-text">6 new</p>
+                
+                <p class="statistics-status-text">
+                  6 new
+                </p>
+                
               </div>
+              
             </div>
             
           </div>
           
+          
+          <!-- CARD 4 -->
+          
           <div class="statistics-card">
             
             <div class="statistics-card-header">
+              
               <div class="statistics-icon">
+                
                 <span class="stats-icon White-icons material-symbols-outlined">
                   warning
                 </span>
+                
               </div>
               
-              <p class="statistics-value">15</p>
+              <p class="statistics-value">
+                15
+              </p>
+              
             </div>
             
+            
             <div class="statistics-card-body">
-              <p class="statistics-title">Active conflict</p>
+              
+              <p class="statistics-title">
+                Active conflict
+              </p>
               
               <div class="statistics-status">
+                
                 <div class="triangle-indicator-red"></div>
-                <p class="statistics-status-text-red">12 new</p>
+                
+                <p class="statistics-status-text-red">
+                  12 new
+                </p>
+                
               </div>
+              
             </div>
             
           </div>
           
+          
+          <!-- CARD 5 -->
+          
           <div class="statistics-card">
             
             <div class="statistics-card-header">
+              
               <div class="statistics-icon">
+                
                 <span class="stats-icon White-icons material-symbols-outlined">
                   handshake
                 </span>
+                
               </div>
               
-              <p class="statistics-value">10</p>
+              <p class="statistics-value">
+                10
+              </p>
+              
             </div>
             
+            
             <div class="statistics-card-body">
-              <p class="statistics-title">Alliance treaties</p>
+              
+              <p class="statistics-title">
+                Alliance treaties
+              </p>
               
               <div class="statistics-status">
+                
                 <div class="triangle-indicator"></div>
-                <p class="statistics-status-text">1 new</p>
+                
+                <p class="statistics-status-text">
+                  1 new
+                </p>
+                
               </div>
+              
             </div>
             
           </div>
           
+          
+          <!-- CARD 6 -->
+          
           <div class="statistics-card">
             
             <div class="statistics-card-header">
+              
               <div class="statistics-icon">
+                
                 <span class="stats-icon White-icons material-symbols-outlined">
                   checklist
                 </span>
+                
               </div>
               
-              <p class="statistics-value">5</p>
+              <p class="statistics-value">
+                5
+              </p>
+              
             </div>
             
+            
             <div class="statistics-card-body">
-              <p class="statistics-title">Alliance project</p>
+              
+              <p class="statistics-title">
+                Alliance project
+              </p>
               
               <div class="statistics-status">
+                
                 <div class="triangle-indicator"></div>
-                <p class="statistics-status-text">1 new</p>
+                
+                <p class="statistics-status-text">
+                  1 new
+                </p>
+                
               </div>
+              
             </div>
             
           </div>
+          
         </div>
+        
+        
+        <!-- BOTTOM STATISTICS -->
+        
         <div class="statistics-card-bottom">
+          
+          
+          <!-- DEFCON -->
+          
           <div class="statistics-card">
             
             <div class="statistics-card-header">
+              
               <div class="statistics-icon">
+                
                 <span class="stats-icon White-icons material-symbols-outlined">
                   shield_with_house
                 </span>
+                
               </div>
               
-              <p class="statistics-value">3</p>
+              <p class="statistics-value">
+                3
+              </p>
+              
             </div>
             
+            
             <div class="statistics-card-body">
-              <p class="statistics-title">DEFCON</p>
+              
+              <p class="statistics-title">
+                DEFCON
+              </p>
               
               <div class="statistics-status">
+                
                 <div class="circle"></div>
+                
               </div>
+              
             </div>
             
           </div>
+          
+          
+          <!-- NUKES -->
+          
           <div class="statistics-card">
             
             <div class="statistics-card-header">
+              
               <div class="statistics-icon">
+                
                 <span class="stats-icon White-icons material-symbols-outlined">
                   bomb
                 </span>
+                
               </div>
               
-              <p class="statistics-value">160</p>
+              <p class="statistics-value">
+                160
+              </p>
+              
             </div>
             
+            
             <div class="statistics-card-body">
-              <p class="statistics-title">Owned nukes</p>
+              
+              <p class="statistics-title">
+                Owned nukes
+              </p>
               
               <div class="statistics-status">
+                
                 <div class="triangle-indicator"></div>
-                <p class="statistics-status-text">10 new</p>
+                
+                <p class="statistics-status-text">
+                  10 new
+                </p>
+                
               </div>
+              
             </div>
             
           </div>
+          
         </div>
+        
       </div>
+      
+      
+      <!-- ALLIANCE FIELD -->
+      
       <div class="alliance-field">
+        
         <div class="alliance-field-header">
+          
           <div class="right-component">
+            
             <span class="red-icons White-icons material-symbols-outlined">
               flag
             </span>
+            
             ALLIANCE FIELD
+            
           </div>
           
+          
           <div class="left-component">
+            
             <a class="nav-field" href="#">
-              <div class="view-all">View all</div>
+            
+              <div class="view-all">
+                View all
+              </div>
+              
               <div class="nav-arrow"></div>
+              
             </a>
             
           </div>
+          
         </div>
         
+        
         <div class="main-field-container">
+          
+          
+          <!-- FIELD 1 -->
+          
           <div class="field-container">
+            
             <div class="field-icons">
+              
               <span class="stats-icon White-icons material-symbols-outlined">
                 language
               </span>
+              
             </div>
             
             <div class="field-title">
@@ -325,13 +584,20 @@
             <div class="field-body">
               128
             </div>
+            
           </div>
           
+          
+          <!-- FIELD 2 -->
+          
           <div class="field-container">
+            
             <div class="field-icons-white">
+              
               <span class="stats-icon White-icons material-symbols-outlined">
                 location_city
               </span>
+              
             </div>
             
             <div class="field-title">
@@ -341,13 +607,20 @@
             <div class="field-body">
               432
             </div>
+            
           </div>
           
+          
+          <!-- FIELD 3 -->
+          
           <div class="field-container">
+            
             <div class="field-icons">
+              
               <span class="stats-icon White-icons material-symbols-outlined">
                 flag
               </span>
+              
             </div>
             
             <div class="field-title">
@@ -357,13 +630,20 @@
             <div class="field-body">
               2458km²
             </div>
+            
           </div>
           
+          
+          <!-- FIELD 4 -->
+          
           <div class="field-container">
+            
             <div class="field-icons">
+              
               <span class="stats-icon White-icons material-symbols-outlined">
                 star
               </span>
+              
             </div>
             
             <div class="field-title">
@@ -373,13 +653,20 @@
             <div class="field-body">
               6,559
             </div>
+            
           </div>
           
+          
+          <!-- FIELD 5 -->
+          
           <div class="field-container-right-border">
+            
             <div class="field-icons">
+              
               <span class="stats-icon White-icons material-symbols-outlined">
                 military_tech
               </span>
+              
             </div>
             
             <div class="field-title-wrap">
@@ -389,53 +676,86 @@
             <div class="field-body">
               876,470
             </div>
+            
           </div>
+          
         </div>
         
-        
       </div>
+      
+      
       <div class="alliance-">
         
       </div>
+      
     </div>
+    
+    
+    <!-- NEWS + UPCOMING EVENTS -->
     
     <div class="news-and-update">
       
+      
+      <!-- ALLIANCE NEWS -->
+      
       <div class="main-body-container">
+        
         <div class="alliance-update-header">
+          
           <div class="right-news-component">
             ALLIANCE NEWS
           </div>
           
+          
           <div class="left-component">
+            
             <a class="nav-field" href="#">
-              <div class="view-all">View all</div>
+            
+              <div class="view-all">
+                View all
+              </div>
+              
               <div class="nav-arrow"></div>
+              
             </a>
             
           </div>
+          
         </div>
+        
+        
         <div class="update-container">
+          
+          
           <div class="news">
             
             <div class="news-icon">
-              <span class="material-symbols-outlined">person
+              
+              <span class="material-symbols-outlined">
+                person
               </span>
+              
             </div>
             
             <div class="content">
               New player was added to the alliance
             </div>
+            
             <div class="time-stamp">
               2h ago
             </div>
+            
           </div>
+          
           
           <div class="news">
             
             <div class="news-icon">
-              <span class="material-symbols-outlined">handshake
+              
+              <span class="material-symbols-outlined">
+                handshake
               </span>
+              
             </div>
             
             <div class="content">
@@ -445,13 +765,18 @@
             <div class="time-stamp">
               2h ago
             </div>
+            
           </div>
+          
           
           <div class="news">
             
             <div class="news-icon">
-              <span class="material-symbols-outlined">settings
+              
+              <span class="material-symbols-outlined">
+                settings
               </span>
+              
             </div>
             
             <div class="content">
@@ -461,13 +786,18 @@
             <div class="time-stamp">
               1d ago
             </div>
+            
           </div>
+          
           
           <div class="news">
             
             <div class="news-icon">
-              <span class="material-symbols-outlined">swords
+              
+              <span class="material-symbols-outlined">
+                handshake 
               </span>
+              
             </div>
             
             <div class="content">
@@ -477,13 +807,18 @@
             <div class="time-stamp">
               16h ago
             </div>
+            
           </div>
+          
           
           <div class="news">
             
             <div class="news-icon">
-              <span class="material-symbols-outlined">account_balance
+              
+              <span class="material-symbols-outlined">
+                account_balance
               </span>
+              
             </div>
             
             <div class="content">
@@ -494,34 +829,57 @@
               3d ago
             </div>
             
-            
           </div>
           
         </div>
-      </div>
+        
       </div>
       
+      
+      <!-- UPCOMING EVENTS -->
+      
       <div class="main-body-container">
+        
         <div class="alliance-update-header">
+          
           <div class="right-news-component">
             UPCOMING EVENTS
           </div>
           
+          
           <div class="left-component">
+            
             <a class="nav-field" href="#">
-              <div class="view-all">View all</div>
+            
+              <div class="view-all">
+                View all
+              </div>
+              
               <div class="nav-arrow"></div>
+              
             </a>
             
           </div>
+          
         </div>
+        
+        
         <div class="update-container">
+          
+          
+          <!-- EVENT 1 -->
+          
           <div class="updates">
             
             <div class="news-icon">
-              <span class="material-symbols-outlined">calendar_month
+              
+              <span class="material-symbols-outlined">
+                calendar_month
               </span>
+              
             </div>
+            
+            
             <div class="update-body">
               
               <div class="update-content">
@@ -531,17 +889,25 @@
               <div class="time-update">
                 Jun 28, 2026•8:00 UTC
               </div>
+              
             </div>
             
-            </div>
           </div>
+          
+          
+          <!-- EVENT 2 -->
           
           <div class="updates">
             
             <div class="news-icon">
-              <span class="material-symbols-outlined">gps_fixed
+              
+              <span class="material-symbols-outlined">
+                gps_fixed
               </span>
+              
             </div>
+            
+            
             <div class="update-body">
               
               <div class="update-content">
@@ -551,16 +917,25 @@
               <div class="time-update">
                 Jul 30, 2026•6:00 UTC
               </div>
+              
             </div>
             
           </div>
           
+          
+          <!-- EVENT 3 -->
+          
           <div class="updates">
             
             <div class="news-icon">
-              <span class="material-symbols-outlined">gps_not_fixed
+              
+              <span class="material-symbols-outlined">
+                gps_not_fixed
               </span>
+              
             </div>
+            
+            
             <div class="update-body">
               
               <div class="update-content">
@@ -570,15 +945,25 @@
               <div class="time-update">
                 Jun 1, 2026•12:00 UTC
               </div>
+              
             </div>
+            
           </div>
+          
+          
+          <!-- EVENT 4 -->
           
           <div class="updates">
             
             <div class="news-icon">
-              <span class="material-symbols-outlined">language
+              
+              <span class="material-symbols-outlined">
+                language
               </span>
+              
             </div>
+            
+            
             <div class="update-body">
               
               <div class="update-content">
@@ -588,15 +973,25 @@
               <div class="time-update">
                 Jun 1, 2026•12:00 UTC
               </div>
+              
             </div>
+            
           </div>
+          
+          
+          <!-- EVENT 5 -->
           
           <div class="updates">
             
             <div class="news-icon">
-              <span class="material-symbols-outlined">gps_not_fixed
+              
+              <span class="material-symbols-outlined">
+                gps_not_fixed
               </span>
+              
             </div>
+            
+            
             <div class="update-body">
               
               <div class="update-content">
@@ -606,31 +1001,149 @@
               <div class="time-update">
                 Jun 21, 2026•12:00 UTC
               </div>
+              
             </div>
+            
           </div>
           
         </div>
         
-  </main>
-  
-  <footer>
-    <div class="footer-content">
+      </div>
       
-      <div class="right-footer-section">
-        <div class="logo-footer-img">
-      <img src="images/BHOS-log.png" alt="logo" />
     </div>
     
-     <p class="quoted">Strength in unity. victory through steel.</p>
+    <!-- overlay -->
+    
+    <div class="overlay"></div>
+    
+    <!-- sidebar -->
+    
+    <div class="sidebar">
+      
+      <div class="sidebar-header">
+        
+        <div>
+          <img src="images/BHOS-log.png" alt="logo" class="logo-sidebar-image" />
+        </div>
+        
+         <div class="alliance-sidebar-name">
+           <div class="name-guard"></div>
+            <p>BHOS</p>
+            <div class="name-guard"></div>
+         </div>
+         
+        </div>
+        
+        <div class="sidesbar-nav">
+          
+          <div class="nav-btn-conatiner">
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                dashboard
+              </span>
+              Dashboard
+            </button>
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                groups 
+              </span>
+              Member
+            </button>
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                flag
+              </span>
+              Nations
+            </button>
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                swords
+              </span>
+              Alliance War
+            </button>
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                account_balance
+              </span>
+              Alliance Council 
+            </button>
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                chat
+              </span>
+              Chats
+            </button>
+            
+            <button class="nav-btn">
+              <span class=" icon-style material-symbols-outlined">
+                analytics
+              </span>
+              Alliance Statistics
+            </button>
+            
+            <button class="nav-btn">
+              <span class=" icon-style material-symbols-outlined">
+                settings
+              </span>
+              Settings 
+            </button>
+            
+            <button class="nav-btn">
+              <span class=" icon-style material-symbols-outlined">
+                info
+              </span>
+              About/help 
+            </button>
+            
+          </div>
+          
+        </div>
+        
+        
+    </div>
+    
+    
+    
+  </main>
+  
+  
+  <!-- FOOTER -->
+  
+  <footer>
+    
+    <div class="footer-content">
+      
+      
+      <div class="right-footer-section">
+        
+        <div class="logo-footer-img">
+          
+          <img src="images/BHOS-log.png" alt="logo">
+          
+        </div>
+        
+        <p class="quoted">
+          Strength in unity. victory through steel.
+        </p>
+        
       </div>
       
+      
       <div class="left-footer-section">
-        © 2026 BROTHERHOOD OF STEEL 
+        © 2026 BROTHERHOOD OF STEEL
       </div>
-       
+      
+      
     </div>
-   
+    
   </footer>
+  
 </body>
 
 </html>
