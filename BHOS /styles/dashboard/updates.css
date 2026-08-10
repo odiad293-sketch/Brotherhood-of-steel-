@@ -50,7 +50,7 @@ html,body{
 }
 .content{
   display:flex;
-  font-size: 8px;
+  font-size: 10px;
   }
   .news{
     display:flex;
@@ -59,7 +59,7 @@ html,body{
     border-bottom: 1px solid rgba(191, 15, 15, 0.19);
   }
   .time-stamp{
-    font-size: 8px;
+    font-size: 10px;
     color:rgba(158, 159, 168, 1);
     white-space: nowrap;
   }
@@ -68,7 +68,7 @@ html,body{
     font-size: 10px;
   }
   .time-update{
-    font-size: 5px;
+    font-size: 8px;
     color:rgba(158, 159, 168, 1);
     white-space: nowrap;
   }
