@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  
+  
+  <link rel="stylesheet" href="styles/dashboard/header.css">
+    <link rel="stylesheet" href="styles/dashboard/updates.css">
+  <link rel="stylesheet" href="styles/dashboard/sidebar.css">
+  <link rel="stylesheet" href="styles/alliance-war/alliance-war.css">
+ 
+</head>
+
+<body>
+  
+    <header>
+    
+    <div class="left-component">
+      
+      <button class="icon-container js-sidebar-btn">
+        <span class=" js-sidebar-icon red-icons material-symbols-outlined">
+          menu
+        </span>
+      </button>
+      
+      <div class="logo-container">
+        
+        <img src="images/BHOS-log.png" alt="logo" class="logo-image" />
+        
+        <div class="alliance-name">
+          <p>BROTHERHOOD OF STEEL</p>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+    
+    <div class="right-component">
+      
+      <button class="search-button">
+        <span class="White-icons material-symbols-outlined">
+          search
+        </span>
+      </button>
+      
+      
+      <button class="icon-container notification-container">
+      
+        <span class="White-icons material-symbols-outlined">
+          notifications
+        </span>
+        
+        <div class="notification-badge">
+          3
+        </div>
+        
+      </button>
+      
+    </div>
+    
+  </header>
+  
+  
+  <main class="war-page">
+
+  <!-- =====================================================
+       WAR CENTER HEADER
+  ====================================================== -->
+
+  <section class="war-center-header">
+
+    <div class="war-title">
+      <span class="material-symbols-outlined">
+        swords
+      </span>
+
+      <div>
+        <h1>Alliance War Center</h1>
+        <p>
+          Monitor active wars, military strength and combat activity.
+        </p>
+      </div>
+    </div>
+
+    <button class="war-log-button">
+      <span class="material-symbols-outlined">
+        description
+      </span>
+
+      <span>War Logs</span>
+    </button>
+
+  </section>
+
+
+  <!-- =====================================================
+       CURRENT WAR
+  ====================================================== -->
+
+  <section class="war-section">
+
+    <div class="section-heading">
+      <span class="material-symbols-outlined">
+        swords
+      </span>
+
+      <h2>Current War</h2>
+    </div>
+
+
+    <div class="current-war-card">
+
+      <!-- Combatants -->
+
+      <div class="war-combatants">
+
+        <div class="combatant attacking">
+
+          <div class="combatant-icon">
+            <span class="material-symbols-outlined">
+              shield
+            </span>
+          </div>
+
+          <div>
+            <small>ATTACKER</small>
+            <strong>Brotherhood of Steel</strong>
+          </div>
+
+        </div>
+
+
+        <div class="war-vs">
+          VS
+        </div>
+
+
+        <div class="combatant defending">
+
+          <div class="combatant-icon enemy-icon">
+            <span class="material-symbols-outlined">
+              skull
+            </span>
+          </div>
+
+          <div>
+            <small>DEFENDER</small>
+            <strong>Iron Dominion</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- War information -->
+
+      <div class="war-information">
+
+        <div class="war-info-item">
+          <span>STATUS</span>
+          <strong class="status-active">ACTIVE</strong>
+        </div>
+
+        <div class="war-info-item">
+          <span>WAR TYPE</span>
+          <strong>ORDINARY</strong>
+        </div>
+
+        <div class="war-info-item">
+          <span>DECLARED</span>
+          <strong>May 24, 2026</strong>
+        </div>
+
+        <div class="war-info-item">
+          <span>TIME LEFT</span>
+          <strong>3d 14h</strong>
+        </div>
+
+        <div class="war-info-item">
+          <span>WAR ID</span>
+          <strong>#478192</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       WAR STATE
+  ====================================================== -->
+
+  <section class="war-section">
+
+    <div class="section-heading">
+      <span class="material-symbols-outlined">
+        military_tech
+      </span>
+
+      <h2>War State</h2>
+    </div>
+
+
+    <div class="war-state-grid">
+
+      <div class="state-card">
+        <span>OUR RESISTANCE</span>
+        <strong>78</strong>
+        <small>out of 100</small>
+      </div>
+
+      <div class="state-card">
+        <span>ENEMY RESISTANCE</span>
+        <strong>42</strong>
+        <small>out of 100</small>
+      </div>
+
+      <div class="state-card">
+        <span>OUR MAPs</span>
+        <strong>8</strong>
+        <small>Military Action Points</small>
+      </div>
+
+      <div class="state-card">
+        <span>ENEMY MAPs</span>
+        <strong>5</strong>
+        <small>Military Action Points</small>
+      </div>
+
+    </div>
+
+
+    <div class="control-status">
+
+      <div class="control-item">
+        <span class="material-symbols-outlined">
+          landscape
+        </span>
+
+        <div>
+          <small>GROUND CONTROL</small>
+          <strong>Brotherhood of Steel</strong>
+        </div>
+      </div>
+
+
+      <div class="control-item">
+        <span class="material-symbols-outlined">
+          flight
+        </span>
+
+        <div>
+          <small>AIR SUPERIORITY</small>
+          <strong>Contested</strong>
+        </div>
+      </div>
+
+
+      <div class="control-item">
+        <span class="material-symbols-outlined">
+          directions_boat
+        </span>
+
+        <div>
+          <small>NAVAL BLOCKADE</small>
+          <strong>Not active</strong>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       MILITARY OVERVIEW
+  ====================================================== -->
+
+  <section class="war-section">
+
+    <div class="section-heading">
+      <span class="material-symbols-outlined">
+        military_tech
+      </span>
+
+      <h2>Alliance Military</h2>
+    </div>
+
+
+    <div class="military-grid">
+
+      <div class="military-card">
+
+        <span class="material-symbols-outlined">
+          person
+        </span>
+
+        <div>
+          <span>Soldiers</span>
+          <strong>1,248,750</strong>
+          <small>Alliance total</small>
+        </div>
+
+      </div>
+
+
+      <div class="military-card">
+
+        <span class="material-symbols-outlined">
+          directions_car
+        </span>
+
+        <div>
+          <span>Tanks</span>
+          <strong>298,120</strong>
+          <small>Alliance total</small>
+        </div>
+
+      </div>
+
+
+      <div class="military-card">
+
+        <span class="material-symbols-outlined">
+          flight
+        </span>
+
+        <div>
+          <span>Aircraft</span>
+          <strong>186,760</strong>
+          <small>Alliance total</small>
+        </div>
+
+      </div>
+
+
+      <div class="military-card">
+
+        <span class="material-symbols-outlined">
+          directions_boat
+        </span>
+
+        <div>
+          <span>Ships</span>
+          <strong>98,470</strong>
+          <small>Alliance total</small>
+        </div>
+
+      </div>
+
+
+      <div class="military-card">
+
+        <span class="material-symbols-outlined">
+          rocket_launch
+        </span>
+
+        <div>
+          <span>Missiles</span>
+          <strong>41,000</strong>
+          <small>Alliance total</small>
+        </div>
+
+      </div>
+
+
+      <div class="military-card nuclear">
+
+        <span class="material-symbols-outlined">
+          rocket_launch
+        </span>
+
+        <div>
+          <span>Nuclear Weapons</span>
+          <strong>160</strong>
+          <small>Alliance total</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       DEFCON
+  ====================================================== -->
+
+  <section class="war-section">
+
+    <div class="section-heading">
+      <span class="material-symbols-outlined">
+        shield
+      </span>
+
+      <h2>Military Readiness</h2>
+    </div>
+
+
+    <div class="readiness-card">
+
+      <div class="defcon-display">
+
+        <span class="material-symbols-outlined">
+          shield
+        </span>
+
+        <div>
+          <small>ALLIANCE DEFCON</small>
+          <strong>3</strong>
+          <span class="ready-status">
+            ● Stable
+          </span>
+        </div>
+
+      </div>
+
+
+      <div class="readiness-info">
+
+        <div>
+          <span>Nuclear Readiness</span>
+          <strong>Ready</strong>
+        </div>
+
+        <div>
+          <span>Active War Nations</span>
+          <strong>7 / 25</strong>
+        </div>
+
+        <div>
+          <span>Military Readiness</span>
+          <strong>High</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       WAR LOSSES
+  ====================================================== -->
+
+  <section class="war-section">
+
+    <div class="section-heading">
+      <span class="material-symbols-outlined">
+        warning
+      </span>
+
+      <h2>War Losses & Damage</h2>
+    </div>
+
+
+    <div class="loss-grid">
+
+      <!-- Our losses -->
+
+      <div class="loss-card">
+
+        <h3>Our Losses</h3>
+
+        <div class="loss-row">
+          <span>Soldiers</span>
+          <strong>25,340</strong>
+        </div>
+
+        <div class="loss-row">
+          <span>Tanks</span>
+          <strong>3,245</strong>
+        </div>
+
+        <div class="loss-row">
+          <span>Aircraft</span>
+          <strong>1,287</strong>
+        </div>
+
+        <div class="loss-row">
+          <span>Ships</span>
+          <strong>489</strong>
+        </div>
+
+        <div class="loss-row">
+          <span>Missiles Used</span>
+          <strong>41</strong>
+        </div>
+
+        <div class="loss-row">
+          <span>Nukes Used</span>
+          <strong>0</strong>
+        </div>
+
+        <div class="loss-total">
+          Total Military Losses
+          <strong>30,361</strong>
+        </div>
+
+      </div>
+
+
+      <!-- Enemy damage -->
+
+      <div class="loss-card enemy-loss">
+
+        <h3>Enemy Losses</h3>
+
+        <div class="loss-row">
+          <span>Soldiers</span>
+          <strong>41,870</strong>
+        </div>
+
+        <div class="loss-row">
+          <span>Tanks</span>
+          <strong>5,652</strong>
+        </div>
+
+        <div class="loss-row">
+          <span>Aircraft</span>
+          <strong>2,548</strong>
+        </div>
+
+        <div class="loss-row">
+          <span>Ships</span>
+          <strong>793</strong>
+        </div>
+
+        <div class="loss-row">
+          <span>Missiles Used</span>
+          <strong>63</strong>
+        </div>
+
+        <div class="loss-row">
+          <span>Nukes Used</span>
+          <strong>0</strong>
+        </div>
+
+        <div class="loss-total">
+          Enemy Military Losses
+          <strong>50,863</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Economic damage -->
+
+    <div class="damage-summary">
+
+      <div>
+        <span>Infrastructure Destroyed</span>
+        <strong>12,482.40</strong>
+      </div>
+
+      <div>
+        <span>Infrastructure Damage Value</span>
+        <strong>$93.4M</strong>
+      </div>
+
+      <div>
+        <span>Money Looted</span>
+        <strong>$18.7M</strong>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       WAR ACTIVITY
+  ====================================================== -->
+
+  <section class="war-section">
+
+    <div class="section-heading">
+      <span class="material-symbols-outlined">
+        history
+      </span>
+
+      <h2>Recent War Activity</h2>
+    </div>
+
+
+    <div class="activity-list">
+
+      <div class="activity-item">
+
+        <span class="material-symbols-outlined">
+          swords
+        </span>
+
+        <div>
+          <strong>Attack recorded</strong>
+          <p>
+            Brotherhood of Steel attacked an enemy nation.
+          </p>
+        </div>
+
+        <time>2h ago</time>
+
+      </div>
+
+
+      <div class="activity-item">
+
+        <span class="material-symbols-outlined">
+          shield
+        </span>
+
+        <div>
+          <strong>Defensive victory</strong>
+          <p>
+            Enemy attack was successfully defended.
+          </p>
+        </div>
+
+        <time>5h ago</time>
+
+      </div>
+
+
+      <div class="activity-item">
+
+        <span class="material-symbols-outlined">
+          rocket_launch
+        </span>
+
+        <div>
+          <strong>Missile attack</strong>
+          <p>
+            Missile strike recorded in the war timeline.
+          </p>
+        </div>
+
+        <time>9h ago</time>
+
+      </div>
+
+
+      <div class="activity-item">
+
+        <span class="material-symbols-outlined">
+          rocket_launch
+        </span>
+
+        <div>
+          <strong>Nuclear attack</strong>
+          <p>
+            Nuclear attack recorded.
+          </p>
+        </div>
+
+        <time>12h ago</time>
+
+      </div>
+
+    </div>
+
+
+    <button class="full-log-button">
+      <span class="material-symbols-outlined">
+        description
+      </span>
+
+      View Full War Log
+    </button>
+
+  </section>
+
+
+  <!-- =====================================================
+       WAR PARTICIPATION
+  ====================================================== -->
+
+  <section class="war-section">
+
+    <div class="section-heading">
+      <span class="material-symbols-outlined">
+        groups
+      </span>
+
+      <h2>War Participation</h2>
+    </div>
+
+
+    <div class="participation-card">
+
+      <div class="participation-stat">
+
+        <div>
+          <span>Members at War</span>
+          <strong>7 / 25</strong>
+        </div>
+
+        <div class="participation-bar">
+          <span style="width: 28%;"></span>
+        </div>
+
+        <small>28% of alliance members currently involved</small>
+
+      </div>
+
+
+      <div class="participation-divider"></div>
+
+
+      <div class="top-damage">
+
+        <h3>Top Damage Dealers</h3>
+
+        <div class="damage-player">
+          <span>01</span>
+          <strong>Steel Reapers</strong>
+          <b>$124.5M</b>
+        </div>
+
+        <div class="damage-player">
+          <span>02</span>
+          <strong>The Enclave</strong>
+          <b>$98.7M</b>
+        </div>
+
+        <div class="damage-player">
+          <span>03</span>
+          <strong>Capital Wasteland</strong>
+          <b>$81.3M</b>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       ALLIANCE WAR ALERT
+  ====================================================== -->
+
+  <section class="war-alert">
+
+    <span class="material-symbols-outlined">
+      warning
+    </span>
+
+    <div>
+
+      <strong>War Alert</strong>
+
+      <p>
+        Alliance currently operating at DEFCON 3.
+        Follow military leadership orders.
+      </p>
+
+    </div>
+
+  </section>
+  
+      <!-- overlay -->
+    
+    <div class="overlay js-overlay"></div>
+    
+    <!-- sidebar -->
+    
+    <div class="sidebar js-sidebar">
+      
+      <div class="sidebar-header">
+        
+        <div>
+          <img src="images/BHOS-log.png" alt="logo" class="logo-sidebar-image" />
+        </div>
+        
+         <div class="alliance-sidebar-name">
+           <div class="name-guard"></div>
+            <p>BHOS</p>
+            <div class="name-guard"></div>
+         </div>
+         
+        </div>
+        
+        <div class="sidesbar-nav">
+          
+          <div class="nav-btn-conatiner">
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                dashboard
+              </span>
+              Dashboard
+            </button>
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                groups 
+              </span>
+              Member
+            </button>
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                flag
+              </span>
+              Nation
+            </button>
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                swords
+              </span>
+              Alliance War
+            </button>
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                account_balance
+              </span>
+              Alliance Council 
+            </button>
+            
+            <button class="nav-btn">
+              <span class="icon-style material-symbols-outlined">
+                chat
+              </span>
+              Chats
+            </button>
+            
+            <button class="nav-btn">
+              <span class=" icon-style material-symbols-outlined">
+                analytics
+              </span>
+              Alliance Statistics
+            </button>
+            
+            <button class="nav-btn">
+              <span class=" icon-style material-symbols-outlined">
+                settings
+              </span>
+              Settings 
+            </button>
+            
+            <button class="nav-btn">
+              <span class=" icon-style material-symbols-outlined">
+                info
+              </span>
+              About/help 
+            </button>
+            
+          </div>
+          
+        </div>
+        
+        
+    </div>
+
+</main>
+
+
+  <!-- FOOTER -->
+  
+  <footer>
+    
+    <div class="footer-content">
+      
+      
+      <div class="right-footer-section">
+        
+        <div class="logo-footer-img">
+          
+          <img src="images/BHOS-log.png" alt="logo">
+          
+        </div>
+        
+        <p class="quoted">
+          Strength in unity. victory through steel.
+        </p>
+        
+      </div>
+      
+      
+      <div class="left-footer-section">
+        © 2026 BROTHERHOOD OF STEEL
+      </div>
+      
+      
+    </div>
+    
+  </footer>
+  
+    <script type="module" src="scripts/dashboard/dashboard.js"></script>
+  
+</body>
+
+</html>
