@@ -1,0 +1,951 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background: #080808;
+  color: #f2f2f2;
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+button:focus {
+  outline: none;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.member-page {
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 54px auto 40px;
+
+  padding: 0 20px;
+}
+
+
+/* Main member card */
+
+.member-card {
+  width: 100%;
+margin: 54px auto 40px;
+
+  background: rgba(8, 8, 8, 0.96);
+
+  border: 1px solid rgba(100, 100, 100, 0.35);
+  border-radius: 18px;
+
+  padding: 28px;
+
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.8),
+    inset 0 0 25px rgba(255, 255, 255, 0.015);
+}
+
+
+/* =========================================================
+   MEMBER CARD HEADER
+========================================================= */
+
+.member-card-header {
+  min-height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid rgba(120, 120, 120, 0.25);
+}
+
+.member-card-header h1 {
+  color: #d00000;
+
+  font-family: "Cinzel", serif;
+
+  font-size: 21px;
+  font-weight: 600;
+
+  letter-spacing: 0.5px;
+}
+
+.member-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.member-icon-button {
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.member-icon-button .material-symbols-outlined {
+  font-size: 28px;
+}
+
+.member-icon-button:hover {
+  color: #d00000;
+}
+
+
+/* =========================================================
+   MEMBER IDENTITY
+========================================================= */
+
+.member-identity {
+  display: grid;
+
+  grid-template-columns: auto 1fr auto;
+
+  align-items: center;
+
+  gap: 22px;
+
+  padding: 25px 0;
+
+  border-bottom: 1px solid rgba(120, 120, 120, 0.25);
+}
+
+
+/* Avatar */
+
+.member-avatar {
+  position: relative;
+
+  width: 150px;
+  height: 150px;
+}
+
+.member-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  border-radius: 50%;
+}
+
+.member-online {
+  position: absolute;
+
+  right: 4px;
+  bottom: 7px;
+
+  width: 30px;
+  height: 30px;
+
+  background: #13d866;
+
+  border: 3px solid #080808;
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 12px rgba(0, 255, 100, 0.35);
+}
+
+
+/* Identity text */
+
+.member-identity-info h2 {
+  font-size: 34px;
+  font-weight: 500;
+
+  margin-bottom: 10px;
+}
+
+.member-rank,
+.member-status {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 8px;
+
+  font-size: 18px;
+}
+
+.member-rank {
+  color: #eeeeee;
+}
+
+.member-rank .material-symbols-outlined {
+  color: #d00000;
+  font-size: 23px;
+}
+
+.member-status {
+  color: #13d866;
+}
+
+.status-indicator {
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: #13d866;
+
+  box-shadow: 0 0 8px rgba(19, 216, 102, 0.8);
+}
+
+.member-id {
+  margin-top: 10px;
+
+  color: #aaaaaa;
+
+  font-size: 16px;
+}
+
+
+/* Member since */
+
+.member-since {
+  width: 190px;
+
+  min-height: 145px;
+
+  border: 1px solid rgba(80, 80, 80, 0.35);
+
+  border-radius: 12px;
+
+  background: rgba(20, 20, 20, 0.65);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  gap: 7px;
+}
+
+.member-since .material-symbols-outlined {
+  font-size: 38px;
+  color: #c7a95b;
+}
+
+.member-since p {
+  color: #dddddd;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.member-since strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+.member-section {
+  padding: 25px 0;
+
+  border-bottom: 1px solid rgba(120, 120, 120, 0.25);
+}
+
+.section-title {
+  color: #d00000;
+
+  font-family: "Cinzel", serif;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   OVERVIEW
+========================================================= */
+
+.overview-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 12px;
+}
+
+.overview-card {
+  min-height: 95px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 16px;
+
+  background: rgba(15, 15, 15, 0.8);
+
+  border: 1px solid rgba(80, 80, 80, 0.35);
+
+  border-radius: 9px;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.overview-card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(190, 0, 0, 0.65);
+
+  box-shadow: 0 0 10px rgba(190, 0, 0, 0.18);
+}
+
+.overview-card > .material-symbols-outlined {
+  color: #d00000;
+
+  font-size: 34px;
+}
+
+.overview-card .status-card-icon {
+  color: #13d866;
+}
+
+.overview-label {
+  display: block;
+
+  color: #999999;
+
+  font-size: 13px;
+
+  margin-bottom: 5px;
+}
+
+.overview-card strong {
+  display: block;
+
+  color: #eeeeee;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   ABOUT MEMBER
+========================================================= */
+
+.member-information {
+  width: 100%;
+}
+
+.information-row {
+  min-height: 54px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 10px 5px;
+
+  border-bottom: 1px solid rgba(80, 80, 80, 0.22);
+}
+
+.information-row:last-child {
+  border-bottom: none;
+}
+
+.information-label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: #a7a7a7;
+
+  font-size: 16px;
+}
+
+.information-label .material-symbols-outlined {
+  font-size: 23px;
+  color: #777777;
+}
+
+.information-row strong {
+  color: #dddddd;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  text-align: right;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.actions-section {
+  border-bottom: none;
+}
+
+.actions-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+.action-button {
+  min-height: 82px;
+
+  border: 1px solid rgba(80, 80, 80, 0.45);
+
+  border-radius: 9px;
+
+  background: rgba(13, 13, 13, 0.9);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  font-size: 17px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.action-button .material-symbols-outlined {
+  font-size: 28px;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(190, 0, 0, 0.7);
+
+  background: rgba(25, 5, 5, 0.9);
+
+  box-shadow: 0 0 12px rgba(190, 0, 0, 0.18);
+}
+
+.action-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+
+/* Danger action */
+
+.danger-action {
+  color: #d00000;
+
+  border-color: rgba(190, 0, 0, 0.55);
+}
+
+.danger-action:hover {
+  color: #ff2020;
+
+  border-color: #d00000;
+
+  box-shadow: 0 0 15px rgba(210, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+  width: 100%;
+
+  background: #050505;
+
+  border-top: 1px solid rgba(190, 0, 0, 0.35);
+
+  padding: 15px 30px;
+}
+
+.footer-content {
+  max-width: 1000px;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.footer-left {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.footer-left img {
+  width: 45px;
+  height: 45px;
+
+  object-fit: contain;
+}
+
+.footer-left span,
+.footer-right {
+  color: #dddddd;
+
+  font-size: 13px;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+  .site-header {
+    height: 85px;
+
+    padding: 0 18px;
+  }
+
+  .header-logo img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .header-alliance-name {
+    font-size: 18px;
+  }
+
+  .member-page {
+    margin-top: 15px;
+
+    padding: 0 12px;
+  }
+
+  .member-card {
+    padding: 20px;
+  }
+
+  .member-identity {
+    grid-template-columns: auto 1fr;
+  }
+
+  .member-since {
+    grid-column: 1 / -1;
+
+    width: 100%;
+    min-height: 80px;
+
+    flex-direction: row;
+
+    justify-content: flex-start;
+
+    padding: 12px 18px;
+
+    text-align: left;
+  }
+
+  .member-since .material-symbols-outlined {
+    font-size: 30px;
+  }
+
+  .overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .site-header {
+    height: 75px;
+
+    padding: 0 10px;
+  }
+
+  .header-left {
+    gap: 5px;
+  }
+
+  .header-right {
+    gap: 0;
+  }
+
+  .header-icon-button {
+    width: 45px;
+    height: 45px;
+  }
+
+  .header-icon-button .material-symbols-outlined {
+    font-size: 31px;
+  }
+
+  .header-logo {
+    gap: 7px;
+  }
+
+  .header-logo img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .header-alliance-name {
+    font-family: "Cinzel", serif;
+
+    font-size: 14px;
+
+    line-height: 1.05;
+  }
+
+  .notification-count {
+    width: 21px;
+    height: 21px;
+
+    min-width: 21px;
+
+    font-size: 11px;
+  }
+
+
+  /* Main */
+
+  .member-page {
+    margin: 10px auto 25px;
+
+    padding: 0 5px;
+  }
+
+  .member-card {
+    padding: 14px;
+
+    border-radius: 13px;
+  }
+
+
+  /* Member heading */
+
+  .member-card-header {
+    padding-bottom: 13px;
+  }
+
+  .member-card-header h1 {
+    font-size: 16px;
+  }
+
+  .member-icon-button {
+    width: 35px;
+    height: 35px;
+  }
+
+  .member-icon-button .material-symbols-outlined {
+    font-size: 23px;
+  }
+
+
+  /* Identity */
+
+  .member-identity {
+    grid-template-columns: auto 1fr;
+
+    gap: 13px;
+
+    padding: 20px 0;
+  }
+
+  .member-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .member-online {
+    width: 21px;
+    height: 21px;
+
+    border-width: 2px;
+
+    right: 0;
+    bottom: 3px;
+  }
+
+  .member-identity-info h2 {
+    font-size: 23px;
+
+    margin-bottom: 6px;
+  }
+
+  .member-rank,
+  .member-status {
+    font-size: 14px;
+
+    margin-bottom: 5px;
+  }
+
+  .member-rank .material-symbols-outlined {
+    font-size: 19px;
+  }
+
+  .member-id {
+    font-size: 12px;
+
+    margin-top: 6px;
+  }
+
+
+  /* Member since */
+
+  .member-since {
+    min-height: 65px;
+
+    padding: 10px;
+
+    gap: 8px;
+  }
+
+  .member-since .material-symbols-outlined {
+    font-size: 27px;
+  }
+
+  .member-since p {
+    font-size: 11px;
+  }
+
+  .member-since strong {
+    font-size: 13px;
+  }
+
+
+  /* Sections */
+
+  .member-section {
+    padding: 20px 0;
+  }
+
+  .section-title {
+    font-size: 15px;
+
+    margin-bottom: 11px;
+  }
+
+
+  /* Overview */
+
+  .overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px;
+  }
+
+  .overview-card {
+    min-height: 76px;
+
+    padding: 10px;
+
+    gap: 9px;
+
+    border-radius: 7px;
+  }
+
+  .overview-card > .material-symbols-outlined {
+    font-size: 27px;
+  }
+
+  .overview-label {
+    font-size: 10px;
+
+    margin-bottom: 3px;
+  }
+
+  .overview-card strong {
+    font-size: 14px;
+  }
+
+
+  /* Information */
+
+  .information-row {
+    min-height: 47px;
+
+    padding: 8px 2px;
+
+    gap: 10px;
+  }
+
+  .information-label {
+    gap: 7px;
+
+    font-size: 13px;
+  }
+
+  .information-label .material-symbols-outlined {
+    font-size: 19px;
+  }
+
+  .information-row strong {
+    max-width: 52%;
+
+    font-size: 12px;
+
+    overflow-wrap: anywhere;
+  }
+
+
+  /* Actions */
+
+  .actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px;
+  }
+
+  .action-button {
+    min-height: 67px;
+
+    padding: 8px;
+
+    gap: 7px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    text-align: center;
+  }
+
+  .action-button .material-symbols-outlined {
+    font-size: 23px;
+  }
+
+
+  /* Footer */
+
+  .site-footer {
+    padding: 10px;
+  }
+
+  .footer-content {
+    gap: 8px;
+  }
+
+  .footer-left {
+    gap: 6px;
+  }
+
+  .footer-left img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .footer-left span,
+  .footer-right {
+    font-size: 9px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .header-alliance-name {
+    font-size: 12px;
+  }
+
+  .member-card {
+    padding: 10px;
+  }
+
+  .member-avatar {
+    width: 75px;
+    height: 75px;
+  }
+
+  .member-identity-info h2 {
+    font-size: 20px;
+  }
+
+  .member-id {
+    font-size: 10px;
+  }
+
+  .overview-card {
+    min-height: 70px;
+
+    padding: 8px;
+  }
+
+  .overview-card > .material-symbols-outlined {
+    font-size: 23px;
+  }
+
+  .overview-card strong {
+    font-size: 12px;
+  }
+
+  .action-button {
+    font-size: 10px;
+  }
+
+}
