@@ -1,6 +1,6 @@
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { auth, db } from '/BHOS /scripts/auth/firebase-config.js';
+import { auth, db } from '/BHOS/scripts/auth/firebase-config.js';
 import {setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 let loadingState = false;
 
@@ -315,7 +315,7 @@ async function createAccount() {
     });
     loadingState = false;
     loadingStateManager()
-    window.location.href="/BHOS /dashboard.html"
+    window.location.href="/BHOS/dashboard.html"
   } catch (error) {
     
     errorCard.style.display = 'block';
