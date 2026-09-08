@@ -3,7 +3,6 @@ import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebase
 import { auth, db } from './firebase-config.js';
 import {setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 let loadingState = false;
-
 function rederSignInForm() {
   let rederSignInFormHTML = `
    <section>
