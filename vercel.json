@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/BHOS/index.html"
+    }
+  ]
+}
