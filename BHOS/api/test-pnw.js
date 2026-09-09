@@ -3,9 +3,9 @@ export default async function handler(req, res) {
 
   const query = `
     query {
-      nations(first: 1) {
+      nations(alliance: 1) {
         data {
-          nation_name
+          alliance_scrore
         }
       }
     }
