@@ -3,7 +3,7 @@ export default async function handler(req, res) {
 
   const query = `
     query {
-      alliance(alliance: 1) {
+      alliances(alliance: 1) {
         data {
          alliance_seniority
         }
