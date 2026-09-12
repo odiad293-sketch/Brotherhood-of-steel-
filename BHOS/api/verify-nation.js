@@ -26,26 +26,10 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    const nation = data.data.nations.data[0];
-
-    if (!nation) {
-      return res.status(404).json({
-        verified: false,
-        message: "Nation not found"
-      });
-    }
-
-    const verified =
-      Number(nation.id) === Number(nationId) &&
-      nation.nation_name === nationName;
-
-    res.status(200).json({
-      verified,
-      nation
-    });
+    return res.status(200).json(data);
 
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       error: error.message
     });
   }
