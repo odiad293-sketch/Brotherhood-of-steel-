@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
   const query = `
     query {
-      nations(id: ${nationId}, first: 1) {
+      nations(id: ${nationId}) {
         data {
           id
           nation_name
