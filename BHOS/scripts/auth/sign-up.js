@@ -1,8 +1,9 @@
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { auth, db } from './firebase-config.js';
-import {setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import { auth, db } from '../firebase-config.js';
+import { setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 let loadingState = false;
+
 function rederSignInForm() {
   let rederSignInFormHTML = `
    <section>
@@ -301,8 +302,8 @@ async function createAccount() {
     );
     
     const userRefres = doc(db, "users", userDoc.user.uid)
-    await setDoc(userRefres,{
-      userName:'unknown',
+    await setDoc(userRefres, {
+      userName: 'unknown',
       nation: nationName.value,
       nationId: nationId.value,
       email: email.value,
@@ -314,7 +315,7 @@ async function createAccount() {
     });
     loadingState = false;
     loadingStateManager()
-    window.location.href="/BHOS/dashboard.html"
+    window.location.href = "/BHOS/dashboard.html"
   } catch (error) {
     
     errorCard.style.display = 'block';
@@ -491,5 +492,26 @@ function populateTimezones() {
   });
   
 }
+
+async function pnwVerification() {
+  try {
+    const response = await fetch("/api/verify-nation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nationId: nationId.value,
+        nationName: nationName.value
+      })
+    });
+    console.log(response)
+  } catch (error) {
+    console.log(error.message)
+  }
+  
+}
+
+pnwVerification()
 
 populateTimezones();
