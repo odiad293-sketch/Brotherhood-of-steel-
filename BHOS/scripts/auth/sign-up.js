@@ -495,7 +495,7 @@ function populateTimezones() {
 
 async function pnwVerification() {
   try {
-    const response = await fetch("/api/verify-nation", {
+    const response = await fetch("https://bhos-olive.vercel.app/api/verify-nation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
