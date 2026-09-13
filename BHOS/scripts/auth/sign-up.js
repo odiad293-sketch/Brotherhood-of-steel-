@@ -449,6 +449,7 @@ function showErrorMessage() {
 function handleSignUp() {
   if (formValidation()) {
     createAccount();
+    populateTimezones();
     loadingStateManager();
   }
 }
@@ -515,4 +516,3 @@ async function pnwVerification() {
 
 pnwVerification();
 
-populateTimezones();
