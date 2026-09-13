@@ -505,13 +505,14 @@ async function pnwVerification() {
         nationName: nationName.value
       })
     });
-    console.log(response)
+    const data = await response.json();
+    console.log(data);
   } catch (error) {
     console.log(error.message)
   }
   
 }
 
-pnwVerification()
+pnwVerification();
 
 populateTimezones();

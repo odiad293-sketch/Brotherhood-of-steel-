@@ -1,4 +1,13 @@
 export default async function handler(req, res) {
+  
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+  
   try {
     if (req.method !== "POST") {
       return res.status(405).json({
@@ -6,18 +15,18 @@ export default async function handler(req, res) {
         message: "Method not allowed"
       });
     }
-
+    
     const apiKey = process.env.PNW_API_KEY;
-
+    
     const { nationId, nationName } = req.body;
-
+    
     if (!nationId || !nationName) {
       return res.status(400).json({
         verified: false,
         message: "Nation ID and nation name are required"
       });
     }
-
+    
     const query = `
       query {
         nations(id: [${Number(nationId)}], first: 1) {
@@ -28,7 +37,7 @@ export default async function handler(req, res) {
         }
       }
     `;
-
+    
     const response = await fetch(
       "https://api.politicsandwar.com/graphql",
       {
@@ -40,9 +49,9 @@ export default async function handler(req, res) {
         body: JSON.stringify({ query })
       }
     );
-
+    
     const data = await response.json();
-
+    
     // Check whether Politics & War returned a GraphQL error
     if (data.errors) {
       return res.status(502).json({
@@ -51,21 +60,21 @@ export default async function handler(req, res) {
         errors: data.errors
       });
     }
-
+    
     const nation = data?.data?.nations?.data?.[0];
-
+    
     if (!nation) {
       return res.status(404).json({
         verified: false,
         message: "Nation not found"
       });
     }
-
+    
     const verified =
       Number(nation.id) === Number(nationId) &&
       nation.nation_name.trim().toLowerCase() ===
-        nationName.trim().toLowerCase();
-
+      nationName.trim().toLowerCase();
+    
     return res.status(200).json({
       verified,
       nation: {
@@ -73,10 +82,10 @@ export default async function handler(req, res) {
         nation_name: nation.nation_name
       }
     });
-
+    
   } catch (error) {
     console.error(error);
-
+    
     return res.status(500).json({
       verified: false,
       message: "Server error",
