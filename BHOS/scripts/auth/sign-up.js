@@ -1,4 +1,3 @@
-import { getAuth } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import { auth, db } from '../firebase-config.js';
 import { setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
@@ -293,8 +292,10 @@ function passwordVisibilityController() {
 passwordVisibilityController()
 
 async function createAccount() {
-  loadingState = true
+  
   try {
+    loadingState = true
+    loadingStateManager()
     const userDoc = await createUserWithEmailAndPassword(
       auth,
       email.value,
@@ -313,9 +314,7 @@ async function createAccount() {
       role: "initiate",
       created_At: serverTimestamp(),
     });
-    loadingState = false;
-    loadingStateManager()
-    window.location.href = "/BHOS/dashboard.html"
+    
   } catch (error) {
     
     errorCard.style.display = 'block';
@@ -363,6 +362,7 @@ async function createAccount() {
     }
     console.log(error.code);
     console.log(error.message);
+  } finally {
     loadingState = false;
     loadingStateManager()
   }
@@ -446,11 +446,10 @@ function showErrorMessage() {
   });
 }
 
-function handleSignUp() {
-  if (formValidation()) {
-    createAccount();
-    populateTimezones();
-    loadingStateManager();
+async function handleSignUp() {
+  if (formValidation() && await pnwInfoCollector()) {
+    await createAccount();
+    
   }
 }
 
@@ -494,25 +493,85 @@ function populateTimezones() {
   
 }
 
-async function pnwVerification() {
-  try {
-    const response = await fetch("https://bhos-olive.vercel.app/api/verify-nation", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nationId: nationId.value,
-        nationName: nationName.value
-      })
-    });
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.log(error.message)
+async function pnwInfoCollector() {
+  let pmwAccVerifier = await pnwVerifier();
+  if (pmwAccVerifier.verified === true) {
+    return true
   }
-  
+  else {
+    showErrorMessage()
+    formErrorMessage.textContent = pmwAccVerifier.error;
+    errorCard.style.display = 'block';
+    return false
+  }
 }
 
-pnwVerification();
+async function pnwVerifier() {
+  try {
+    loadingState = true;
+    loadingStateManager();
 
+    const response = await fetch(
+      "https://bhos-olive.vercel.app/api/verify-nation",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nationId: nationId.value,
+          nationName: nationName.value
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.verified === true) {
+      return {
+        verified: true
+      };
+    }
+
+    else if (data.message === "Nation not found") {
+      return {
+        verified: false,
+        error: "Nation not found"
+      };
+    }
+
+    else if (
+      data.message === "Nation ID and nation name are required"
+    ) {
+      return {
+        verified: false,
+        error: "Nation ID and nation name are required"
+      };
+    }
+
+    else {
+      return {
+        verified: false,
+        error: "Server error. Try again later."
+      };
+    }
+
+  } catch (error) {
+
+    console.log(error.message);
+
+    return {
+      verified: false,
+      error: "Unable to contact the verification server. Try again later."
+    };
+
+  } finally {
+
+    loadingState = false;
+    loadingStateManager();
+
+  }
+}
+
+
+populateTimezones();
