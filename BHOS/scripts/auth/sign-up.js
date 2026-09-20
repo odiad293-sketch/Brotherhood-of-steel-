@@ -252,7 +252,7 @@ rederSignInForm()
 const nationName = document.querySelector('.js-nation-input');
 const nationId = document.querySelector('.js-nation-Id-input');
 const email = document.querySelector('.email-input');
-const password = document.querySelector('.password-value');
+export const password = document.querySelector('.password-value');
 const confirmPassword = document.querySelector('.js-confirm-password');
 const countryselected = document.querySelector('.country-selected');
 const agreeToTerms = document.querySelector('.agree-to-terms');
