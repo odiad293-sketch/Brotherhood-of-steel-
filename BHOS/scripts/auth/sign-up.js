@@ -314,13 +314,13 @@ async function createAccount() {
       role: "initiate",
       created_At: serverTimestamp(),
     });
-    
+    window.location.href = '/sign-in.html';
   } catch (error) {
     
     errorCard.style.display = 'block';
     
     if (error.code === 'auth/email-already-in-use') {
-      showErrorMessage()
+      scrollToErrorMessage()
       formErrorMessage.textContent =
         'An account with this email already exists. Please sign in instead.';
       
@@ -346,17 +346,17 @@ async function createAccount() {
       
     } else if (error.code === 'auth/operation-not-allowed') {
       loadingState = false;
-      showErrorMessage()
+      scrollToErrorMessage()
       formErrorMessage.textContent =
         'Account creation is currently unavailable. Please try again later.';
       
     } else if (error.code === 'auth/admin-restricted-operation') {
-      showErrorMessage()
+      scrollToErrorMessage()
       formErrorMessage.textContent =
         'Account creation is currently restricted. Please try again later.';
       
     } else {
-      showErrorMessage()
+      scrollToErrorMessage()
       formErrorMessage.textContent =
         'We could not create your account. Please try again later.';
     }
@@ -404,7 +404,7 @@ function formValidation() {
         }
         
         else {
-          showErrorMessage()
+          scrollToErrorMessage()
           errorCard.style.display = 'block';
           formErrorMessage.textContent = 'Password requirements: At least 8 characters, including an uppercase letter, lowercase letter, number, and special character. e.g: Secure@123';
           return
@@ -413,7 +413,7 @@ function formValidation() {
       }
       
       else {
-        showErrorMessage()
+       scrollToErrorMessage()
         errorCard.style.display = 'block';
         formErrorMessage.textContent = 'Password requirements: At least 8 characters, including an uppercase letter, lowercase letter, number, and special character. e.g: Secure@123';
         return
@@ -421,7 +421,7 @@ function formValidation() {
     }
     
     else {
-      showErrorMessage()
+      scrollToErrorMessage()
       errorCard.style.display = 'block';
       formErrorMessage.textContent = 'Please check if password match.';
       return
@@ -429,7 +429,7 @@ function formValidation() {
   }
   
   else {
-    showErrorMessage()
+    scrollToErrorMessage()
     errorCard.style.display = 'block';
     formErrorMessage.textContent = 'Please fill in all required fields before creating your account.';
     return
@@ -439,7 +439,7 @@ function formValidation() {
   return passwordValidation
 }
 
-function showErrorMessage() {
+function scrollToErrorMessage() {
   window.scrollTo({
     top: 180,
     behavior: 'smooth'
@@ -499,7 +499,7 @@ async function pnwInfoCollector() {
     return true
   }
   else {
-    showErrorMessage()
+    scrollToErrorMessage()
     formErrorMessage.textContent = pmwAccVerifier.error;
     errorCard.style.display = 'block';
     return false
@@ -541,9 +541,8 @@ async function pnwVerifier() {
     }
 
     else if (
-      data.message === "Nation ID and nation name are required"
-    ) {
-      return {
+      data.message === "Nation ID and nation name are required") {
+     return {
         verified: false,
         error: "Nation ID and nation name are required"
       };
@@ -552,7 +551,7 @@ async function pnwVerifier() {
     else {
       return {
         verified: false,
-        error: "Server error. Try again later."
+        error: "Servere error, make sure nationID and nation name are valid."
       };
     }
 
