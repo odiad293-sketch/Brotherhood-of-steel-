@@ -1,9 +1,10 @@
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { auth, db } from '../firebase-config.js';
-import { setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-let loadingState = false;
+import {
+     passwordToggle,
+     confirmPasswordToggle,
+     password,
+     confirmPassword } from "./sign-up.js";
 
-function rederSignInForm() {
+export function rederSignInForm() {
   let rederSignInFormHTML = `
    <section>
    <div class="error-card">
@@ -247,27 +248,7 @@ function rederSignInForm() {
   
 }
 
-rederSignInForm()
-
-const nationName = document.querySelector('.js-nation-input');
-const nationId = document.querySelector('.js-nation-Id-input');
-const email = document.querySelector('.email-input');
-export const password = document.querySelector('.password-value');
-const confirmPassword = document.querySelector('.js-confirm-password');
-const countryselected = document.querySelector('.country-selected');
-const agreeToTerms = document.querySelector('.agree-to-terms');
-const createAccoumtBtn = document.querySelector('.js-creat-account-btn');
-const signBtn = document.querySelector('.sign-in-button');
-const errorCard = document.querySelector('.error-card');
-const errorTryAgainBtn = document.querySelector('.retry-btn');
-const errorCancelBtn = document.querySelector('.close-btn');
-const passwordToggle = document.querySelector('.password-toggle');
-const confirmPasswordToggle = document.querySelector('.confirm-password-toggle');
-const selectedTimezone = document.querySelector('.timezone-select');
-const formErrorMessage = document.querySelector('.error-message');
-const overlay = document.querySelector('.overlay');
-
-function passwordVisibilityController() {
+export function passwordVisibilityController() {
   confirmPasswordToggle.addEventListener('click', () => {
     if (confirmPassword.type === 'password') {
       confirmPassword.type = 'text';
@@ -289,86 +270,7 @@ function passwordVisibilityController() {
   });
 }
 
-passwordVisibilityController()
-
-async function createAccount() {
-  
-  try {
-    loadingState = true
-    loadingStateManager()
-    const userDoc = await createUserWithEmailAndPassword(
-      auth,
-      email.value,
-      password.value
-    );
-    
-    const userRefres = doc(db, "users", userDoc.user.uid)
-    await setDoc(userRefres, {
-      userName: 'unknown',
-      nation: nationName.value,
-      nationId: nationId.value,
-      email: email.value,
-      country: countryselected.value,
-      timezone: selectedTimezone.value,
-      agreedToTerms: agreeToTerms.checked,
-      role: "initiate",
-      created_At: serverTimestamp(),
-    });
-    window.location.href = '/sign-in.html';
-  } catch (error) {
-    
-    errorCard.style.display = 'block';
-    
-    if (error.code === 'auth/email-already-in-use') {
-      scrollToErrorMessage()
-      formErrorMessage.textContent =
-        'An account with this email already exists. Please sign in instead.';
-      
-    } else if (error.code === 'auth/invalid-email') {
-      showErrorMessage()
-      formErrorMessage.textContent =
-        'Please enter a valid email address.';
-      
-    } else if (error.code === 'auth/weak-password') {
-      showErrorMessage()
-      formErrorMessage.textContent =
-        'Your password is too weak. Please choose a stronger password.';
-      
-    } else if (error.code === 'auth/network-request-failed') {
-      showErrorMessage()
-      formErrorMessage.textContent =
-        'Network error. Please check your internet connection and try again.';
-      
-    } else if (error.code === 'auth/too-many-requests') {
-      showErrorMessage()
-      formErrorMessage.textContent =
-        'Too many attempts. Please wait a moment and try again.';
-      
-    } else if (error.code === 'auth/operation-not-allowed') {
-      loadingState = false;
-      scrollToErrorMessage()
-      formErrorMessage.textContent =
-        'Account creation is currently unavailable. Please try again later.';
-      
-    } else if (error.code === 'auth/admin-restricted-operation') {
-      scrollToErrorMessage()
-      formErrorMessage.textContent =
-        'Account creation is currently restricted. Please try again later.';
-      
-    } else {
-      scrollToErrorMessage()
-      formErrorMessage.textContent =
-        'We could not create your account. Please try again later.';
-    }
-    console.log(error.code);
-    console.log(error.message);
-  } finally {
-    loadingState = false;
-    loadingStateManager()
-  }
-}
-
-function loadingStateManager() {
+export function loadingStateManager() {
   if (loadingState === true) {
     overlay.style.display = "flex";
   }
@@ -377,200 +279,9 @@ function loadingStateManager() {
   }
 }
 
-function formValidation() {
-  let passwordValidation = false;
-  if (
-    nationName.value !== "" &&
-    nationId.value !== "" &&
-    email.value !== "" &&
-    confirmPassword.value !== "" &&
-    password.value !== "" &&
-    countryselected.value !== "" &&
-    selectedTimezone.value !== "" &&
-    agreeToTerms.checked
-  ) {
-    
-    if (password.value === confirmPassword.value) {
-      
-      if (password.value.length >= 8) {
-        
-        if (
-          /\d/.test(password.value) &&
-          /[A-Z]/.test(password.value) &&
-          /[a-z]/.test(password.value) &&
-          /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?`~]/.test(password.value)
-        ) {
-          passwordValidation = true;
-        }
-        
-        else {
-          scrollToErrorMessage()
-          errorCard.style.display = 'block';
-          formErrorMessage.textContent = 'Password requirements: At least 8 characters, including an uppercase letter, lowercase letter, number, and special character. e.g: Secure@123';
-          return
-        }
-        
-      }
-      
-      else {
-       scrollToErrorMessage()
-        errorCard.style.display = 'block';
-        formErrorMessage.textContent = 'Password requirements: At least 8 characters, including an uppercase letter, lowercase letter, number, and special character. e.g: Secure@123';
-        return
-      }
-    }
-    
-    else {
-      scrollToErrorMessage()
-      errorCard.style.display = 'block';
-      formErrorMessage.textContent = 'Please check if password match.';
-      return
-    }
-  }
-  
-  else {
-    scrollToErrorMessage()
-    errorCard.style.display = 'block';
-    formErrorMessage.textContent = 'Please fill in all required fields before creating your account.';
-    return
-    
-  }
-  
-  return passwordValidation
-}
-
-function scrollToErrorMessage() {
+export function scrollToErrorMessage() {
   window.scrollTo({
     top: 180,
     behavior: 'smooth'
   });
 }
-
-async function handleSignUp() {
-  if (formValidation() && await pnwInfoCollector()) {
-    await createAccount();
-    
-  }
-}
-
-function authLogic() {
-  
-  createAccoumtBtn.addEventListener('click', handleSignUp);
-  
-  errorTryAgainBtn.addEventListener('click', handleSignUp);
-  
-  errorCancelBtn.addEventListener('click', () => {
-    errorCard.style.display = 'none';
-  });
-  
-}
-
-authLogic()
-
-function populateTimezones() {
-  
-  // Get all the timezones supported by the browser
-  const timezones = Intl.supportedValuesOf('timeZone');
-  
-  // Get the user's current timezone
-  const userTimezone =
-    Intl.DateTimeFormat().resolvedOptions().timeZone;
-  
-  // Create an option for every timezone
-  timezones.forEach((timezone) => {
-    
-    const option = document.createElement('option');
-    
-    option.value = timezone;
-    option.textContent = timezone;
-    
-    // Automatically select the user's timezone
-    if (timezone === userTimezone) {
-      option.selected = true;
-    }
-    selectedTimezone.appendChild(option);
-  });
-  
-}
-
-async function pnwInfoCollector() {
-  let pmwAccVerifier = await pnwVerifier();
-  if (pmwAccVerifier.verified === true) {
-    return true
-  }
-  else {
-    scrollToErrorMessage()
-    formErrorMessage.textContent = pmwAccVerifier.error;
-    errorCard.style.display = 'block';
-    return false
-  }
-}
-
-async function pnwVerifier() {
-  try {
-    loadingState = true;
-    loadingStateManager();
-
-    const response = await fetch(
-      "https://bhos-olive.vercel.app/api/verify-nation",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nationId: nationId.value,
-          nationName: nationName.value
-        })
-      }
-    );
-
-    const data = await response.json();
-
-    if (data.verified === true) {
-      return {
-        verified: true
-      };
-    }
-
-    else if (data.message === "Nation not found") {
-      return {
-        verified: false,
-        error: "Nation not found"
-      };
-    }
-
-    else if (
-      data.message === "Nation ID and nation name are required") {
-     return {
-        verified: false,
-        error: "Nation ID and nation name are required"
-      };
-    }
-
-    else {
-      return {
-        verified: false,
-        error: "Servere error, make sure nationID and nation name are valid."
-      };
-    }
-
-  } catch (error) {
-
-    console.log(error.message);
-
-    return {
-      verified: false,
-      error: "Unable to contact the verification server. Try again later."
-    };
-
-  } finally {
-
-    loadingState = false;
-    loadingStateManager();
-
-  }
-}
-
-
-populateTimezones();
