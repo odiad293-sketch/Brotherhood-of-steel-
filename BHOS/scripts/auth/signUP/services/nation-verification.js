@@ -1,6 +1,9 @@
+import {scrollToErrorMessage, loadingStateManager} from '../UI.js';
+import {loadingState} from '../sign-up-validation.js';
+
 export async function pnwInfoCollector() {
-  let pmwAccVerifier = await pnwVerifier();
-  if (pmwAccVerifier.verified === true) {
+  let pnwAccVerifier = await pnwVerifier();
+  if (pnwAccVerifier.verified === true) {
     return true
   }
   else {
