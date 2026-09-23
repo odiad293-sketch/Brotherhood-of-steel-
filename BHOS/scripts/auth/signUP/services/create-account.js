@@ -1,5 +1,8 @@
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import { auth, db } from '../../../firebase-config.js';
 import {scrollToErrorMessage, loadingStateManager} from '../UI.js';
-import {loadingState} from '../sign-up-validation.js';
+import {loadingState} from '../sign-up.js';
 import {overlay} from '../sign-up.js';
 export async function createAccount() {
   try {

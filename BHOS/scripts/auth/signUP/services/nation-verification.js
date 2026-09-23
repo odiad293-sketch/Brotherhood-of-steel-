@@ -1,5 +1,5 @@
 import {scrollToErrorMessage, loadingStateManager} from '../UI.js';
-import {loadingState} from '../sign-up-validation.js';
+import { loadingState } from '../sign-up.js';
 
 export async function pnwInfoCollector() {
   let pnwAccVerifier = await pnwVerifier();
@@ -8,7 +8,7 @@ export async function pnwInfoCollector() {
   }
   else {
     scrollToErrorMessage()
-    formErrorMessage.textContent = pmwAccVerifier.error;
+    formErrorMessage.textContent = pnwAccVerifier.error;
     errorCard.style.display = 'block';
     return false
   }

@@ -1,16 +1,10 @@
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { auth, db } from '../../firebase-config.js';
 import{ formValidation } from './sign-up-validation.js';
-import {} from '';
 import {
    rederSignInForm,
    passwordVisibilityController,
-   loadingStateManager,
-   scrollToErrorMessage
   } from "./UI.js";
 import { populateTimezones } from "../../../utils/timezone.js";
-import { setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-import { pnwInfoCollector, pnwVerifier } from './services/nationtion-verification.js';
+import { pnwInfoCollector } from './services/nation-verification.js';
 import {createAccount} from './services/create-account.js';
 
 export let loadingState = false;
@@ -32,7 +26,7 @@ export const passwordToggle = document.querySelector('.password-toggle');
 export const confirmPasswordToggle = document.querySelector('.confirm-password-toggle');
 export const selectedTimezone = document.querySelector('.timezone-select');
 export const formErrorMessage = document.querySelector('.error-message');
-const overlay = document.querySelector('.overlay');
+export const overlay = document.querySelector('.overlay');
 
 async function handleSignUp() {
   if (formValidation() && await pnwInfoCollector()) {
