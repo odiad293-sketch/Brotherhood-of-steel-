@@ -2,12 +2,21 @@ import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebase
 import { setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 import { auth, db } from '../../../firebase-config.js';
 import {scrollToErrorMessage, loadingStateManager} from '../UI.js';
-import {loadingState} from '../sign-up.js';
-import {overlay} from '../sign-up.js';
+import {
+    setLoadingState,
+    overlay,
+    errorCard,
+    formErrorMessage,
+    nationName,
+    nationId,
+    email,
+    password,
+    countryselected,
+    selectedTimezone,
+    agreeToTerms } from '../sign-up.js';
 export async function createAccount() {
   try {
-    loadingState = true
-    overlay.display="block";
+    setLoadingState(true);
     loadingStateManager()
     const userDoc = await createUserWithEmailAndPassword(
       auth,
@@ -27,7 +36,7 @@ export async function createAccount() {
       role: "initiate",
       created_At: serverTimestamp(),
     });
-    window.location.href = '/sign-in.html';
+    
   } catch (error) {
     
     errorCard.style.display = 'block';
@@ -58,7 +67,6 @@ export async function createAccount() {
         'Too many attempts. Please wait a moment and try again.';
       
     } else if (error.code === 'auth/operation-not-allowed') {
-      loadingState = false;
       scrollToErrorMessage()
       formErrorMessage.textContent =
         'Account creation is currently unavailable. Please try again later.';
@@ -76,7 +84,7 @@ export async function createAccount() {
     console.log(error.code);
     console.log(error.message);
   } finally {
-    loadingState = false;
+    setLoadingState(false);
     loadingStateManager()
   }
 }

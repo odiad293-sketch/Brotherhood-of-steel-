@@ -2,7 +2,9 @@ import {
      passwordToggle,
      confirmPasswordToggle,
      password,
-     confirmPassword } from "./sign-up.js";
+     confirmPassword,
+     loadingState,
+     overlay} from "./sign-up.js";
 
 export function rederSignInForm() {
   let rederSignInFormHTML = `

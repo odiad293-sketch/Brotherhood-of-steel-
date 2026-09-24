@@ -8,6 +8,10 @@ import { pnwInfoCollector } from './services/nation-verification.js';
 import {createAccount} from './services/create-account.js';
 
 export let loadingState = false;
+
+export function setLoadingState(state) {
+  loadingState = state;
+}
 rederSignInForm()
 
 export const nationName = document.querySelector('.js-nation-input');

@@ -13,12 +13,11 @@ header{
 .overlay{
   position: fixed;
   display: flex;
-  color:red;
   bottom: 0;
   top: 0;
   left: 0;
   right:0;
-  background-color:transparent;
+  background-color:#0A0202CC;
   z-index: 200;
   display: none;
   justify-content: center;

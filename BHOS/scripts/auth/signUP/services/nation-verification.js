@@ -1,5 +1,10 @@
 import {scrollToErrorMessage, loadingStateManager} from '../UI.js';
-import { loadingState } from '../sign-up.js';
+import { 
+  setLoadingState,
+  nationId,
+  formErrorMessage,
+  errorCard,
+  nationName} from '../sign-up.js';
 
 export async function pnwInfoCollector() {
   let pnwAccVerifier = await pnwVerifier();
@@ -16,7 +21,7 @@ export async function pnwInfoCollector() {
 
 export async function pnwVerifier() {
   try {
-    loadingState = true;
+    setLoadingState(true);
     loadingStateManager();
 
     const response = await fetch(
@@ -74,7 +79,7 @@ export async function pnwVerifier() {
 
   } finally {
 
-    loadingState = false;
+    setLoadingState(false);
     loadingStateManager();
 
   }
