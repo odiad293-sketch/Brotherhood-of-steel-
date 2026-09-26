@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { setDoc, doc, serverTimestamp, getDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 import { auth, db } from '../../../firebase-config.js';
 import {scrollToErrorMessage, loadingStateManager} from '../UI.js';
 import {
@@ -37,6 +37,15 @@ export async function createAccount() {
       created_At: serverTimestamp(),
     });
     
+    
+  onAuthStateChanged( async (user) => {
+    if (user) {
+      const userRefres = doc(db, "users", user.uid)
+     const userData = await getDoc(userRefres)
+     console.log(userData)
+    }
+  });
+
   } catch (error) {
     
     errorCard.style.display = 'block';
@@ -87,4 +96,8 @@ export async function createAccount() {
     setLoadingState(false);
     loadingStateManager()
   }
+}
+
+function userAuthSate() {
+  
 }
