@@ -4,7 +4,6 @@ import { auth, db } from '../../../firebase-config.js';
 import {scrollToErrorMessage, loadingStateManager} from '../UI.js';
 import {
     setLoadingState,
-    overlay,
     errorCard,
     formErrorMessage,
     nationName,
@@ -26,7 +25,7 @@ export async function createAccount() {
     
     const userRefres = doc(db, "users", userDoc.user.uid)
     await setDoc(userRefres, {
-      userName: 'unknown',
+      userName: 'unknown',  
       nation: nationName.value,
       nationId: nationId.value,
       email: email.value,
@@ -38,13 +37,12 @@ export async function createAccount() {
     });
     
     
-  onAuthStateChanged( async (user) => {
-    if (user) {
-      const userRefres = doc(db, "users", user.uid)
-     const userData = await getDoc(userRefres)
-     console.log(userData)
+  onAuthStateChanged(auth, async (currentUser) => {
+    if (currentUser) {
+    window.location.href = "../../../dashboard.html";
     }
   });
+    
 
   } catch (error) {
     
@@ -54,24 +52,24 @@ export async function createAccount() {
       scrollToErrorMessage()
       formErrorMessage.textContent =
         'An account with this email already exists. Please sign in instead.';
-      
+      scrollToErrorMessage()
     } else if (error.code === 'auth/invalid-email') {
       scrollToErrorMessage()
       formErrorMessage.textContent =
         'Please enter a valid email address.';
       
     } else if (error.code === 'auth/weak-password') {
-      showErrorMessage()
+      scrollToErrorMessage()
       formErrorMessage.textContent =
         'Your password is too weak. Please choose a stronger password.';
       
     } else if (error.code === 'auth/network-request-failed') {
-      showErrorMessage()
+      scrollToErrorMessage()
       formErrorMessage.textContent =
         'Network error. Please check your internet connection and try again.';
       
     } else if (error.code === 'auth/too-many-requests') {
-      showErrorMessage()
+      scrollToErrorMessage()
       formErrorMessage.textContent =
         'Too many attempts. Please wait a moment and try again.';
       
@@ -96,8 +94,4 @@ export async function createAccount() {
     setLoadingState(false);
     loadingStateManager()
   }
-}
-
-function userAuthSate() {
-  
 }
