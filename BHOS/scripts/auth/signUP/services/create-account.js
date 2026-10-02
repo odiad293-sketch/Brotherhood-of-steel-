@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { setDoc, doc, serverTimestamp, getDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import { createUserWithEmailAndPassword, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 import { auth, db } from '../../../firebase-config.js';
 import {scrollToErrorMessage, loadingStateManager} from '../UI.js';
 import {
@@ -13,7 +13,9 @@ import {
     countryselected,
     selectedTimezone,
     agreeToTerms } from '../sign-up.js';
+
 export async function createAccount() {
+  
   try {
     setLoadingState(true);
     loadingStateManager()
@@ -36,16 +38,14 @@ export async function createAccount() {
       created_At: serverTimestamp(),
     });
     
-    
-  onAuthStateChanged(auth, async (currentUser) => {
-    if (currentUser) {
-    window.location.href = "../../../dashboard.html";
+  onAuthStateChanged( auth, (currentUser) => {
+    if(currentUser) {
+        window.location.href = "dashboard.html";
     }
-  });
-    
 
+  });
   } catch (error) {
-    
+    isSignedIn = true;    
     errorCard.style.display = 'block';
     
     if (error.code === 'auth/email-already-in-use') {

@@ -1,4 +1,6 @@
 import{ formValidation } from './sign-up-validation.js';
+import { auth } from "../../firebase-config.js";
+import { onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import {
    rederSignInForm,
    passwordVisibilityController,
@@ -8,6 +10,12 @@ import { pnwInfoCollector } from './services/nation-verification.js';
 import {createAccount} from './services/create-account.js';
 
 export let loadingState = false;
+ 
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    window.location.href = "dashboard.html";
+  }
+});
 
 export function setLoadingState(state) {
   loadingState = state;
@@ -46,6 +54,13 @@ function authLogic() {
   });
 }
 
+const signInRedirect = () => {
+  signBtn.addEventListener("click",() => {
+    window.location.href ="login.html"
+  });
+}
+
+signInRedirect();
 authLogic();
 passwordVisibilityController();
 populateTimezones();

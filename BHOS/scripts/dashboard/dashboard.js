@@ -1,3 +1,4 @@
+
 function sidebar() {
   const sidebar = document.querySelector('.js-sidebar');
   const overlay = document.querySelector('.js-overlay');
@@ -24,5 +25,5 @@ function sidebar() {
     menuBtn.textContent = 'menu';
   });
 }
-
 sidebar();
+
