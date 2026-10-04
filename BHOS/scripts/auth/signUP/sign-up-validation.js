@@ -1,15 +1,13 @@
-import {
-   nationName,
-    nationId,
-    email,
-    password,
-    confirmPassword,
-    countryselected, 
-    selectedTimezone, 
-    agreeToTerms, 
-    errorCard, 
-    formErrorMessage } from './sign-up.js';
-  import { scrollToErrorMessage } from './UI.js';
+import { scrollToErrorMessage } from './UI.js';
+  
+const nationName = document.querySelector('.js-nation-input');
+const nationId = document.querySelector('.js-nation-Id-input');
+const email = document.querySelector('.email-input');
+const countryselected = document.querySelector('.country-selected');
+const agreeToTerms = document.querySelector('.agree-to-terms');
+const errorCard = document.querySelector('.error-card');
+const formErrorMessage = document.querySelector('.error-message');
+const selectedTimezone = document.querySelector('.timezone-select');
 
 export function formValidation() {
   let passwordValidation = false;

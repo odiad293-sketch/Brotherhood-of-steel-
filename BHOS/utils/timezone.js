@@ -1,6 +1,5 @@
-import { selectedTimezone } from "../scripts/auth/signUP/sign-up.js";
 export function populateTimezones() {
-  
+  const selectedTimezone = document.querySelector('.timezone-select');
     // Get all the timezones supported by the browser
   const timezones = Intl.supportedValuesOf('timeZone');
   

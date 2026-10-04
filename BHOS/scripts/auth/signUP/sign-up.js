@@ -1,44 +1,28 @@
-import{ formValidation } from './sign-up-validation.js';
+import { formValidation } from './sign-up-validation.js';
 import { auth } from "../../firebase-config.js";
-import { onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import {
-   rederSignInForm,
-   passwordVisibilityController,
-  } from "./UI.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { rederSignInForm } from "./UI.js";
+import { passwordVisibilityController } from '../../../utils/PVC.js';
 import { populateTimezones } from "../../../utils/timezone.js";
 import { pnwInfoCollector } from './services/nation-verification.js';
-import {createAccount} from './services/create-account.js';
+import { createAccount } from './services/create-account.js';
 
-export let loadingState = false;
+
  
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    window.location.href = "dashboard.html";
+onAuthStateChanged(auth, (currentUser) => {
+  if (currentUser) {
+    window.location.href = "#";
   }
 });
 
-export function setLoadingState(state) {
-  loadingState = state;
-}
 rederSignInForm()
 
-export const nationName = document.querySelector('.js-nation-input');
-export const nationId = document.querySelector('.js-nation-Id-input');
-export const email = document.querySelector('.email-input');
-export const password = document.querySelector('.password-value');
-export const confirmPassword = document.querySelector('.js-confirm-password');
-export const countryselected = document.querySelector('.country-selected');
-export const agreeToTerms = document.querySelector('.agree-to-terms');
-export const createAccoumtBtn = document.querySelector('.js-creat-account-btn');
-export const signBtn = document.querySelector('.sign-in-button');
-export const errorCard = document.querySelector('.error-card');
-export const errorTryAgainBtn = document.querySelector('.retry-btn');
-export const errorCancelBtn = document.querySelector('.close-btn');
-export const passwordToggle = document.querySelector('.password-toggle');
-export const confirmPasswordToggle = document.querySelector('.confirm-password-toggle');
-export const selectedTimezone = document.querySelector('.timezone-select');
-export const formErrorMessage = document.querySelector('.error-message');
-export const overlay = document.querySelector('.overlay');
+
+ const createAccoumtBtn = document.querySelector('.js-creat-account-btn');
+ const signBtn = document.querySelector('.sign-in-button');
+ const errorCard = document.querySelector('.error-card');
+ const errorTryAgainBtn = document.querySelector('.retry-btn');
+ const errorCancelBtn = document.querySelector('.close-btn');
 
 async function handleSignUp() {
   if (formValidation() && await pnwInfoCollector()) {
@@ -47,9 +31,9 @@ async function handleSignUp() {
 }
 
 function authLogic() {
-  createAccoumtBtn.addEventListener('click', handleSignUp);
-  errorTryAgainBtn.addEventListener('click', handleSignUp);
-  errorCancelBtn.addEventListener('click', () => {
+   createAccoumtBtn.addEventListener('click', handleSignUp);
+   errorTryAgainBtn.addEventListener('click', handleSignUp);
+   errorCancelBtn.addEventListener('click', () => {
     errorCard.style.display = 'none';
   });
 }

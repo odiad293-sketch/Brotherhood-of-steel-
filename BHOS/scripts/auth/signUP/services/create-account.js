@@ -1,21 +1,20 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import { setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 import { auth, db } from '../../../firebase-config.js';
-import {scrollToErrorMessage, loadingStateManager} from '../UI.js';
-import {
-    setLoadingState,
-    errorCard,
-    formErrorMessage,
-    nationName,
-    nationId,
-    email,
-    password,
-    countryselected,
-    selectedTimezone,
-    agreeToTerms } from '../sign-up.js';
+import {scrollToErrorMessage} from '../UI.js';
+import {loadingStateManager, setLoadingState} from '../../../../utils/loading-manager.js';
+
+const nationName = document.querySelector('.js-nation-input');
+const nationId = document.querySelector('.js-nation-Id-input');
+const email = document.querySelector('.email-input');
+const countryselected = document.querySelector('.country-selected');
+const agreeToTerms = document.querySelector('.agree-to-terms');
+const errorCard = document.querySelector('.error-card');
+const formErrorMessage = document.querySelector('.error-message');
+const selectedTimezone = document.querySelector('.timezone-select');
+const password = document.querySelector(".js-password-value");
 
 export async function createAccount() {
-  
   try {
     setLoadingState(true);
     loadingStateManager()
@@ -52,7 +51,7 @@ export async function createAccount() {
       scrollToErrorMessage()
       formErrorMessage.textContent =
         'An account with this email already exists. Please sign in instead.';
-      scrollToErrorMessage()
+        
     } else if (error.code === 'auth/invalid-email') {
       scrollToErrorMessage()
       formErrorMessage.textContent =

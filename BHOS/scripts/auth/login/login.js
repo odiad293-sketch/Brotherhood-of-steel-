@@ -1,136 +1,127 @@
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import { auth } from "../../firebase-config.js";
-
-const renderLoginHTML = () => {
-  let loginHTML = `<div class="container">
-      <div class="main-signUp-container">
-        <div class="form-heading">
-          <div class="create-account-icon">
-            <span class="material-symbols-outlined">
-              person_add
-            </span>
-          </div>
-          <div class="create-acc-writeUp">
-            WELCOME BACK
-          </div>
-          
-          <div class="strap">
-            <img src="images/strap.png" alt="strap" />
-          </div>
-        </div>
-        
-        <div class="signUp-container">
-          
-          <div class="signUp-form">
-            <div class="form-name">
-              EMAIL ADDRESS
-            </div>
-            <div class="form-instruction">We'll never share your email</div>
-            <div class="inputs-container">
-              <span class="material-symbols-outlined">
-                mail
-              </span>
-              <div class="input-bar">
-                <input class="js-email-value" type="email" placeholder="Enter your email address" />
-              </div>
-            </div>
-          </div>
-          
-          <div class="signUp-form">
-            <div class="form-name">
-              PASSWORD
-            </div>
-            <div class="form-instruction">create a strong password</div>
-            <div class="inputs-container">
-              <span class="material-symbols-outlined">
-                lock
-              </span>
-              <div class="input-bar">
-                <input class="js-password-value" type="password" placeholder="Enter your password" />
-              </div>
-            </div>
-          </div>
-          </div>
-          <div>
-            <a href="#" class="forget-password">forget password</a>
-          </div>
-          
-          <button class="js-login-btn create-acc-container" type="submit">
-            <span class="material-symbols-outlined add-person-icon">
-              person_add
-            </span>
-            <div>
-              LOGIN
-            </div>
-          </button>
-          
-          <div class="or-continer">
-            <div class="line-beside-or"></div>
-            <div>
-              OR
-            </div>
-            <div class="line-beside-or"></div>
-          </div>
-          
-          
-          <button class="sign-in-button">
-            <span class="material-symbols-outlined add-person-icon">
-              person_add
-            </span>
-            <div>
-              CREATE ACCOUNT
-            </div>
-          </button>
-          
-          <footer>
-            <div class="footer">
-              <span class="material-symbols-outlined">
-                encrypted
-              </span>
-              <div>
-                SECURE. PROTECTED. BROTHERHOOD.
-              </div>
-              <div>
-                you data is encrypted and secure with us.
-              </div>
-            </div>
-          </footer>
-      </div>
-      </div>
-  `;
-  document.querySelector("main").innerHTML = loginHTML;
-}
+import {
+  renderLoginHTML,
+  createAccountRedirect,
+  passwordVisibilityController,
+  scrollToErrorMessage
+} from './UI.js';
+import { loadingStateManager, setLoadingState } from '../../../utils/loading-manager.js';
 renderLoginHTML();
 
-const password = document.querySelector("js-password-value")
-const email = document.querySelector("js-email-value")
-const loginBtn = document.querySelector("js-login-btn")
-const createAcc = document.querySelector(".sign-in-button")
-console.log(loginBtn)
+const errorTryAgainBtn = document.querySelector('.retry-btn');
+const errorCancelBtn = document.querySelector('.close-btn');
+const password = document.querySelector(".js-password-value");
+const email = document.querySelector(".js-email-value");
+const loginBtn = document.querySelector(".js-login-btn");
+const errorCard = document.querySelector('.error-card');
+const formErrorMessage = document.querySelector('.error-message');
 
-const handleLogin = async () => {
-    try {
-      await signInWithEmailAndPassword(auth, email.value, password.value)
-      window.location.href = "dashboard.html"      
-    } catch (error) {
-       console.log(error)
-    }
-  
+const loginLogic = async () => {
+  setLoadingState(true)
+  loadingStateManager()
+  try {
+    await signInWithEmailAndPassword(auth, email.value, password.value);
+    window.location.href = "dashboard.html"
+  } catch (error) {
+  errorCard.style.display = 'block';
+
+  if (error.code === 'auth/invalid-email') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'Please enter a valid email address.';
+  }
+
+  else if (error.code === 'auth/invalid-credential') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'The email address or password is incorrect. Please check your details and try again.';
+  }
+
+  else if (error.code === 'auth/user-disabled') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'This account has been disabled. Please contact support for assistance.';
+  }
+
+  else if (error.code === 'auth/user-not-found') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'No account was found with this email address.';
+  }
+
+  else if (error.code === 'auth/wrong-password') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'The password you entered is incorrect. Please try again.';
+  }
+
+  else if (error.code === 'auth/too-many-requests') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'Too many login attempts have been made. Please wait a moment and try again.';
+  }
+
+  else if (error.code === 'auth/network-request-failed') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'A network error occurred. Please check your internet connection and try again.';
+  }
+
+  else if (error.code === 'auth/operation-not-allowed') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'Email and password sign-in is currently unavailable. Please try again later.';
+  }
+
+  else if (error.code === 'auth/user-token-expired') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'Your login session has expired. Please sign in again.';
+  }
+
+  else if (error.code === 'auth/requires-recent-login') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'Please sign in again to continue.';
+  }
+
+  else if (error.code === 'auth/multi-factor-auth-required') {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'Additional verification is required to sign in.';
+  }
+
+  else {
+    scrollToErrorMessage()
+    formErrorMessage.textContent =
+      'We could not sign you in. Please check your details and try again later.';
+  }
+
+  console.log(error.code)
+} finally {
+    setLoadingState(false);
+    loadingStateManager()
+  }
 }
 
-const createAccountRedirect = () => {
-  createAcc.addEventListener("click", () => {
-    window.location.href = "index.html"
-  });
-}
 
 createAccountRedirect();
 
 const loginHandler = () => {
-loginBtn.addEventListener(async () => {
-  await handleLogin()
- });
-} 
+  loginBtn.addEventListener('click', async () => {
+    await loginLogic()
+  });
+}
 
+function loginLogicOperator() {
+    loginBtn.addEventListener('click', loginHandler);
+    errorTryAgainBtn.addEventListener('click', loginHandler);
+    errorCancelBtn.addEventListener('click', () => {
+    errorCard.style.display = 'none';
+  });
+}
 
-loginHandler()
+loginLogicOperator()
+
+passwordVisibilityController()

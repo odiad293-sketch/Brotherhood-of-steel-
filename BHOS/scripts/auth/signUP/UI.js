@@ -1,11 +1,3 @@
-import {
-     passwordToggle,
-     confirmPasswordToggle,
-     password,
-     confirmPassword,
-     loadingState,
-     overlay} from "./sign-up.js";
-
 export function rederSignInForm() {
   let rederSignInFormHTML = `
    <section>
@@ -248,37 +240,6 @@ export function rederSignInForm() {
   
   document.querySelector('main').innerHTML = rederSignInFormHTML;
   
-}
-
-export function passwordVisibilityController() {
-  confirmPasswordToggle.addEventListener('click', () => {
-    if (confirmPassword.type === 'password') {
-      confirmPassword.type = 'text';
-      confirmPasswordToggle.textContent = 'visibility_off';
-    } else {
-      confirmPassword.type = 'password';
-      confirmPasswordToggle.textContent = 'visibility';
-    }
-  });
-  
-  passwordToggle.addEventListener('click', () => {
-    if (password.type === 'password') {
-      password.type = 'text';
-      passwordToggle.textContent = 'visibility_off';
-    } else {
-      password.type = 'password';
-      passwordToggle.textContent = 'visibility';
-    }
-  });
-}
-
-export function loadingStateManager() {
-  if (loadingState === true) {
-    overlay.style.display = "flex";
-  }
-  else {
-    overlay.style.display = "none";
-  }
 }
 
 export function scrollToErrorMessage() {

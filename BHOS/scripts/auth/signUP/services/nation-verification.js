@@ -1,10 +1,10 @@
-import {scrollToErrorMessage, loadingStateManager} from '../UI.js';
-import { 
-  setLoadingState,
-  nationId,
-  formErrorMessage,
-  errorCard,
-  nationName} from '../sign-up.js';
+import {scrollToErrorMessage} from '../UI.js';
+import {loadingStateManager, setLoadingState} from '../../../../utils/loading-manager.js';
+
+const nationName = document.querySelector('.js-nation-input');
+const nationId = document.querySelector('.js-nation-Id-input');
+const errorCard = document.querySelector('.error-card');
+const formErrorMessage = document.querySelector('.error-message');
 
 export async function pnwInfoCollector() {
   let pnwAccVerifier = await pnwVerifier();
