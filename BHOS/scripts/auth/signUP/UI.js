@@ -31,7 +31,7 @@ export function rederSignInForm() {
             
             <div>
               <img src="images/strap.png" alt="strap" />
-            </div> 
+            </div>11
           </div>
           
           <div class="signUp-container">
@@ -93,7 +93,7 @@ export function rederSignInForm() {
                 </span>
                 <div class="input-bar">
                   <input class="password-value" type="password" placeholder="Enter your password" />
-                </div>
+                </div> 
                   <span class="material-symbols-outlined password-toggle">  visibility  </span>
               </div>
             </div>

@@ -6,8 +6,6 @@ import { passwordVisibilityController } from '../../../utils/PVC.js';
 import { populateTimezones } from "../../../utils/timezone.js";
 import { pnwInfoCollector } from './services/nation-verification.js';
 import { createAccount } from './services/create-account.js';
-
-
  
 onAuthStateChanged(auth, (currentUser) => {
   if (currentUser) {
@@ -44,7 +42,7 @@ const signInRedirect = () => {
   });
 }
 
+passwordVisibilityController();
 signInRedirect();
 authLogic();
-passwordVisibilityController();
 populateTimezones();

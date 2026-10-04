@@ -98,7 +98,6 @@ const loginLogic = async () => {
       'We could not sign you in. Please check your details and try again later.';
   }
 
-  console.log(error.code)
 } finally {
     setLoadingState(false);
     loadingStateManager()
@@ -108,10 +107,8 @@ const loginLogic = async () => {
 
 createAccountRedirect();
 
-const loginHandler = () => {
-  loginBtn.addEventListener('click', async () => {
+const loginHandler = async () => {
     await loginLogic()
-  });
 }
 
 function loginLogicOperator() {

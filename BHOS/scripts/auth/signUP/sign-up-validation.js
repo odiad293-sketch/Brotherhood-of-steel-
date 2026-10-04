@@ -1,15 +1,17 @@
 import { scrollToErrorMessage } from './UI.js';
   
-const nationName = document.querySelector('.js-nation-input');
-const nationId = document.querySelector('.js-nation-Id-input');
-const email = document.querySelector('.email-input');
-const countryselected = document.querySelector('.country-selected');
-const agreeToTerms = document.querySelector('.agree-to-terms');
-const errorCard = document.querySelector('.error-card');
-const formErrorMessage = document.querySelector('.error-message');
-const selectedTimezone = document.querySelector('.timezone-select');
-
 export function formValidation() {
+  const nationName = document.querySelector('.js-nation-input');
+  const nationId = document.querySelector('.js-nation-Id-input');
+  const email = document.querySelector('.email-input');
+  const countryselected = document.querySelector('.country-selected');
+  const agreeToTerms = document.querySelector('.agree-to-terms');
+  const errorCard = document.querySelector('.error-card');
+  const formErrorMessage = document.querySelector('.error-message');
+  const selectedTimezone = document.querySelector('.timezone-select');
+  const password = document.querySelector('.password-value');
+  const confirmPassword = document.querySelector('.js-confirm-password');
+
   let passwordValidation = false;
   if (
     nationName.value !== "" &&
