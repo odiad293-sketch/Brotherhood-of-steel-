@@ -31,7 +31,7 @@ export function rederSignInForm() {
             
             <div>
               <img src="images/strap.png" alt="strap" />
-            </div>11
+            </div>
           </div>
           
           <div class="signUp-container">

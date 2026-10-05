@@ -1,12 +1,10 @@
 import {scrollToErrorMessage} from '../UI.js';
 import {loadingStateManager, setLoadingState} from '../../../../utils/loading-manager.js';
 
-const nationName = document.querySelector('.js-nation-input');
-const nationId = document.querySelector('.js-nation-Id-input');
-const errorCard = document.querySelector('.error-card');
-const formErrorMessage = document.querySelector('.error-message');
 
 export async function pnwInfoCollector() {
+  const errorCard = document.querySelector('.error-card');
+  const formErrorMessage = document.querySelector('.error-message');
   let pnwAccVerifier = await pnwVerifier();
   if (pnwAccVerifier.verified === true) {
     return true
@@ -20,6 +18,8 @@ export async function pnwInfoCollector() {
 }
 
 export async function pnwVerifier() {
+  const nationId = document.querySelector('.js-nation-id-input');
+  const nationName = document.querySelector('.js-nation-input');
   try {
     setLoadingState(true);
     loadingStateManager();
