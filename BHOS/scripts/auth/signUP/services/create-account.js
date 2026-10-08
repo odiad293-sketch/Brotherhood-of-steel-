@@ -1,20 +1,21 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import { setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 import { auth, db } from '../../../firebase-config.js';
-import {scrollToErrorMessage} from '../UI.js';
-import {loadingStateManager, setLoadingState} from '../../../../utils/loading-manager.js';
-
-const nationName = document.querySelector('.js-nation-input');
-const nationId = document.querySelector('.js-nation-Id-input');
-const email = document.querySelector('.email-input');
-const countryselected = document.querySelector('.country-selected');
-const agreeToTerms = document.querySelector('.agree-to-terms');
-const errorCard = document.querySelector('.error-card');
-const formErrorMessage = document.querySelector('.error-message');
-const selectedTimezone = document.querySelector('.timezone-select');
-const password = document.querySelector(".js-password-value");
+import { scrollToErrorMessage } from '../UI.js';
+import { loadingStateManager, setLoadingState } from '../../../../utils/loading-manager.js';
 
 export async function createAccount() {
+  
+  const nationName = document.querySelector('.js-nation-input');
+  const nationId = document.querySelector('.js-nation-Id-input');
+  const email = document.querySelector('.email-input');
+  const countryselected = document.querySelector('.country-selected');
+  const agreeToTerms = document.querySelector('.agree-to-terms');
+  const errorCard = document.querySelector('.error-card');
+  const formErrorMessage = document.querySelector('.error-message');
+  const selectedTimezone = document.querySelector('.timezone-select');
+  const password = document.querySelector(".js-password-value");
+  
   try {
     setLoadingState(true);
     loadingStateManager()
@@ -26,7 +27,7 @@ export async function createAccount() {
     
     const userRefres = doc(db, "users", userDoc.user.uid)
     await setDoc(userRefres, {
-      userName: 'unknown',  
+      userName: 'unknown',
       nation: nationName.value,
       nationId: nationId.value,
       email: email.value,
@@ -37,21 +38,20 @@ export async function createAccount() {
       created_At: serverTimestamp(),
     });
     
-  onAuthStateChanged( auth, (currentUser) => {
-    if(currentUser) {
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
         window.location.href = "dashboard.html";
-    }
-
-  });
+      }
+      
+    });
   } catch (error) {
-    isSignedIn = true;    
     errorCard.style.display = 'block';
     
     if (error.code === 'auth/email-already-in-use') {
       scrollToErrorMessage()
       formErrorMessage.textContent =
         'An account with this email already exists. Please sign in instead.';
-        
+      
     } else if (error.code === 'auth/invalid-email') {
       scrollToErrorMessage()
       formErrorMessage.textContent =
