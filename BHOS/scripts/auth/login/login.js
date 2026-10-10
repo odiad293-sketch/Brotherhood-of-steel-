@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 import { auth } from "../../firebase-config.js";
 import {
   renderLoginHTML,
@@ -8,6 +8,12 @@ import {
 } from './UI.js';
 import { loadingStateManager, setLoadingState } from '../../../utils/loading-manager.js';
 renderLoginHTML();
+
+onAuthStateChanged(auth, (currentUser) => {
+  if (currentUser) {
+    window.location.href = "dashboard.html";
+  }
+});
 
 const errorTryAgainBtn = document.querySelector('.retry-btn');
 const errorCancelBtn = document.querySelector('.close-btn');

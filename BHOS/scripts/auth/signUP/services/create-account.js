@@ -14,8 +14,7 @@ export async function createAccount() {
   const errorCard = document.querySelector('.error-card');
   const formErrorMessage = document.querySelector('.error-message');
   const selectedTimezone = document.querySelector('.timezone-select');
-  const password = document.querySelector(".js-password-value");
-  
+  const password = document.querySelector(".password-value");
   try {
     setLoadingState(true);
     loadingStateManager()
@@ -87,8 +86,6 @@ export async function createAccount() {
       formErrorMessage.textContent =
         'We could not create your account. Please try again later.';
     }
-    console.log(error.code);
-    console.log(error.message);
   } finally {
     setLoadingState(false);
     loadingStateManager()

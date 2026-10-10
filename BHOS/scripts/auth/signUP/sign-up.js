@@ -9,7 +9,7 @@ import { createAccount } from './services/create-account.js';
  
 onAuthStateChanged(auth, (currentUser) => {
   if (currentUser) {
-    window.location.href = "#";
+    window.location.href = "dashboard.html";
   }
 });
 
