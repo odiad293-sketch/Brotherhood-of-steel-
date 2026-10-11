@@ -56,4 +56,4 @@ describe('passwordVisibilityController', function() {
     afterEach(() => {
         fixture.remove()
     });
-})
+});

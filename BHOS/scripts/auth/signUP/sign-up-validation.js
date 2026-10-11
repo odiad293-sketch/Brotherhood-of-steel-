@@ -13,7 +13,7 @@ export function formValidation() {
   const confirmPassword = document.querySelector('.js-confirm-password');
 
   let passwordValidation = false;
-  if (
+  if ( 
     nationName.value !== "" &&
     nationId.value !== "" &&
     email.value !== "" &&
@@ -67,7 +67,6 @@ export function formValidation() {
     errorCard.style.display = 'block';
     formErrorMessage.textContent = 'Please fill in all required fields before creating your account.';
     return
-    
   }
   
   return passwordValidation
