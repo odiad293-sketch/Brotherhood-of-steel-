@@ -1,10 +1,11 @@
 import { formValidation } from "../scripts/auth/signUP/sign-up-validation.js"
 describe('formValidation', function () {
-    beforeEach(() => {
-        const formContainer = document.createElement("div")
-        formContainer.id = "test-form";
-        document.body.appendChild(formContainer)
-        document.querySelector('#test-form').innerHTML = `
+  let formContainer;
+  beforeEach(() => {
+    formContainer = document.createElement("div")
+    formContainer.id = "test-form";
+    document.body.appendChild(formContainer)
+    document.querySelector('#test-form').innerHTML = `
             <div class="error-card">
   <div class="error-icon">!</div>
 
@@ -177,31 +178,62 @@ describe('formValidation', function () {
       </div>
     </div>
     `;
-        formValidation()
-    });
+    formValidation()
+  });
 
-    it("should make sure all require field are filled", function () {
-        const nationName = document.querySelector('.js-nation-input');
-        const nationId = document.querySelector('.js-nation-Id-input');
-        const email = document.querySelector('.email-input');
-        const countryselected = document.querySelector('.country-selected');
-        const agreeToTerms = document.querySelector('.agree-to-terms');
-        const errorCard = document.querySelector('.error-card');
-        const formErrorMessage = document.querySelector('.error-message');
-        const selectedTimezone = document.querySelector('.timezone-select');
-        const password = document.querySelector('.password-value');
-        const confirmPassword = document.querySelector('.js-confirm-password');
+  it("should make sure all require field are filled", function () {
+    const nationName = document.querySelector('.js-nation-input');
+    const nationId = document.querySelector('.js-nation-Id-input');
+    const email = document.querySelector('.email-input');
+    const countryselected = document.querySelector('.country-selected');
+    const agreeToTerms = document.querySelector('.agree-to-terms');
+    const errorCard = document.querySelector('.error-card');
+    const formErrorMessage = document.querySelector('.error-message');
+    const selectedTimezone = document.querySelector('.timezone-select');
+    const password = document.querySelector('.password-value');
+    const confirmPassword = document.querySelector('.js-confirm-password');
 
-        nationName.value = "";
-        nationId.value = "";
-        email.value = "";
-        confirmPassword.value = "";
-        password.value = "";
-        countryselected.value = "";
-        selectedTimezone.value = "";
-        !agreeToTerms.checked;
+    nationName.value = "";
+    nationId.value = "";
+    email.value = "";
+    confirmPassword.value = "";
+    password.value = "";
+    countryselected.value = "";
+    selectedTimezone.value = "";
+    !agreeToTerms.checked;
 
-        formValidation()
-        expect(formErrorMessage.textContent).toBe("Please fill in all required fields before creating your account.")
-    });
+    formValidation()
+    expect(formErrorMessage.textContent).toBe("Please fill in all required fields before creating your account.")
+  });
+
+  it("should make sure both confirm password and password do match", function () {
+    const nationName = document.querySelector('.js-nation-input');
+    const nationId = document.querySelector('.js-nation-Id-input');
+    const email = document.querySelector('.email-input');
+    const countryselected = document.querySelector('.country-selected');
+    const agreeToTerms = document.querySelector('.agree-to-terms');
+    const errorCard = document.querySelector('.error-card');
+    const formErrorMessage = document.querySelector('.error-message');
+    const selectedTimezone = document.querySelector('.timezone-select');
+    const password = document.querySelector('.password-value');
+    const confirmPassword = document.querySelector('.js-confirm-password');
+
+    nationName.value = "xxxx";
+    nationId.value = "xxx";
+    email.value = "xxxx";
+    selectedTimezone.value = "xxxxx";
+    agreeToTerms.checked = true;
+    password.value = "12345"
+    confirmPassword.value = "125345"
+    countryselected.value = "Canada"
+     console.log(countryselected)
+    console.log(agreeToTerms.checked, nationId.value, nationName.value, email.value, selectedTimezone.value, countryselected.value, confirmPassword.value, password.value)
+
+    formValidation()
+    expect(formErrorMessage.textContent).toBe("Please check if password match.")
+  });
+
+  afterEach(() => {
+    formContainer.remove()
+  });
 });
