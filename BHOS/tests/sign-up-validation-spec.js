@@ -161,7 +161,7 @@ describe('formValidation', function () {
                 </span>
                 <div class="select">
                   <select class="timezone-select">
-                    <option value="" class="option-timeZone">Select your time zone</option>
+                    <option value="option-timeZone" class="option-timeZone">Select your time zone</option>
                   </select>
                 </div>
               </div>
@@ -178,7 +178,6 @@ describe('formValidation', function () {
       </div>
     </div>
     `;
-    formValidation()
   });
 
   it("should make sure all require field are filled", function () {
@@ -200,7 +199,7 @@ describe('formValidation', function () {
     password.value = "";
     countryselected.value = "";
     selectedTimezone.value = "";
-    !agreeToTerms.checked;
+    agreeToTerms.checked = false;
 
     formValidation()
     expect(formErrorMessage.textContent).toBe("Please fill in all required fields before creating your account.")
@@ -221,17 +220,69 @@ describe('formValidation', function () {
     nationName.value = "xxxx";
     nationId.value = "xxx";
     email.value = "xxxx";
-    selectedTimezone.value = "xxxxx";
+    selectedTimezone.value = "option-timeZone";
     agreeToTerms.checked = true;
     password.value = "12345"
     confirmPassword.value = "125345"
-    countryselected.value = "Canada"
-     console.log(countryselected)
-    console.log(agreeToTerms.checked, nationId.value, nationName.value, email.value, selectedTimezone.value, countryselected.value, confirmPassword.value, password.value)
+    countryselected.value = "canada"
 
     formValidation()
+
     expect(formErrorMessage.textContent).toBe("Please check if password match.")
   });
+
+  it("should make sure password length is up to 8 character", function () {
+    const nationName = document.querySelector('.js-nation-input');
+    const nationId = document.querySelector('.js-nation-Id-input');
+    const email = document.querySelector('.email-input');
+    const countryselected = document.querySelector('.country-selected');
+    const agreeToTerms = document.querySelector('.agree-to-terms');
+    const errorCard = document.querySelector('.error-card');
+    const formErrorMessage = document.querySelector('.error-message');
+    const selectedTimezone = document.querySelector('.timezone-select');
+    const password = document.querySelector('.password-value');
+    const confirmPassword = document.querySelector('.js-confirm-password');
+
+    nationName.value = "xxxx";
+    nationId.value = "xxx";
+    email.value = "xxxx";
+    selectedTimezone.value = "option-timeZone";
+    agreeToTerms.checked = true;
+    password.value = "12345678"
+    confirmPassword.value = "12345678"
+    countryselected.value = "canada"
+
+    formValidation()
+
+    expect(formErrorMessage.textContent).toBe("Password requirements: At least 8 characters, including an uppercase letter, lowercase letter, number, and special character. e.g: Secure@123")
+  });
+
+  it("should make sure password is secure and having special characters and number", function () {
+    const nationName = document.querySelector('.js-nation-input');
+    const nationId = document.querySelector('.js-nation-Id-input');
+    const email = document.querySelector('.email-input');
+    const countryselected = document.querySelector('.country-selected');
+    const agreeToTerms = document.querySelector('.agree-to-terms');
+    const errorCard = document.querySelector('.error-card');
+    const formErrorMessage = document.querySelector('.error-message');
+    const selectedTimezone = document.querySelector('.timezone-select');
+    const password = document.querySelector('.password-value');
+    const confirmPassword = document.querySelector('.js-confirm-password');
+
+    nationName.value = "xxxx";
+    nationId.value = "xxx";
+    email.value = "xxxx";
+    selectedTimezone.value = "option-timeZone";
+    agreeToTerms.checked = true;
+    password.value = "Secure1123"
+    confirmPassword.value = "Secure1123"
+    countryselected.value = "canada"
+
+    formValidation()
+
+    expect(formErrorMessage.textContent).toBe("Password requirements: At least 8 characters, including an uppercase letter, lowercase letter, number, and special character. e.g: Secure@123")
+  });
+
 
   afterEach(() => {
     formContainer.remove()

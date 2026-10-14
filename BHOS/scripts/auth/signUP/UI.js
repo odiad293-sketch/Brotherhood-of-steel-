@@ -175,7 +175,8 @@ export function rederSignInForm() {
                 </span>
                 <div class="select">
                   <select class="timezone-select">
-                    <option value="" class="option-timeZone">Select your time zone</option>
+                  <option value="" class="option-timeZone">Select your time zone</option>
+
                   </select>
                 </div>
               </div>

@@ -15,7 +15,6 @@ onAuthStateChanged(auth, (currentUser) => {
 
 rederSignInForm()
 
-
  const createAccoumtBtn = document.querySelector('.js-creat-account-btn');
  const signBtn = document.querySelector('.sign-in-button');
  const errorCard = document.querySelector('.error-card');

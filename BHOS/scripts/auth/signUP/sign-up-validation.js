@@ -69,5 +69,5 @@ export function formValidation() {
     return
   }
   
-  return passwordValidation
+  return passwordValidation = true;
 }
