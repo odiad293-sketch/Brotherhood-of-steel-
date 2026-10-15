@@ -12,9 +12,8 @@ describe("LoadingStateManager", function () {
     let element;
     beforeEach(() => {
         element = document.createElement("div");
-        element.id = "test-element";
         document.body.appendChild(element);
-        document.querySelector('#test-element').innerHTML = `
+        element.innerHTML = `
             <div class="overlay">
     <div class="loading-state">
       <img class="bhos-logo-loading" src="images/BHOS-log.png" alt="logo" />

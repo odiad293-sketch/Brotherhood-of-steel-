@@ -5,7 +5,6 @@ describe("formValidation", function () {
 
   beforeEach(() => {
     formContainer = document.createElement("div");
-    formContainer.id = "test-form";
     document.body.appendChild(formContainer);
 
     formContainer.innerHTML = `

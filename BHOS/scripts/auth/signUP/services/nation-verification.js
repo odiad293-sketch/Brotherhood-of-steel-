@@ -21,17 +21,10 @@ export async function pnwVerifier() {
   try {
     const nationName = document.querySelector('.js-nation-input');
     const nationId = document.querySelector('.js-nation-Id-input');
-    console.log("nationName element:", nationName);
-    console.log("nationId element:", nationId);
-    
-    console.log("nationName value:", nationName?.value);
-    console.log("nationId value:", nationId?.value);
+  
     setLoadingState(true);
     loadingStateManager();
-    console.log("Sending to server:", {
-      nationId: nationId?.value,
-      nationName: nationName?.value
-    });
+  
     const response = await fetch(
       "https://bhos-olive.vercel.app/api/verify-nation",
       {
@@ -60,8 +53,7 @@ export async function pnwVerifier() {
       };
     }
     
-    else if (
-      data.message === "Nation ID and nation name are required") {
+    else if (data.message === "Nation ID and nation name are required") {
       return {
         verified: false,
         error: "Nation ID and nation name are required"
@@ -76,7 +68,6 @@ export async function pnwVerifier() {
     }
     
   } catch (error) {
-    console.error("PNW VERIFIER ERROR:", error);
     return {
       verified: false,
       error: error.message
