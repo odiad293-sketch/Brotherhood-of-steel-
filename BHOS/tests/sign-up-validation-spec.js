@@ -1,290 +1,194 @@
-import { formValidation } from "../scripts/auth/signUP/sign-up-validation.js"
-describe('formValidation', function () {
+import { formValidation } from "../scripts/auth/signUP/sign-up-validation.js";
+
+describe("formValidation", function () {
   let formContainer;
+
   beforeEach(() => {
-    formContainer = document.createElement("div")
+    formContainer = document.createElement("div");
     formContainer.id = "test-form";
-    document.body.appendChild(formContainer)
-    document.querySelector('#test-form').innerHTML = `
-            <div class="error-card">
-  <div class="error-icon">!</div>
+    document.body.appendChild(formContainer);
 
-  <div class="error-content">
-    <h3>Something went wrong</h3>
-    <p class='error-message'></p>
-  </div>
+    formContainer.innerHTML = `
+      <div class="error-card" style="display: none;">
+        <div class="error-icon">!</div>
 
-  <div class="error-actions">
-    <button class="error-btn retry-btn">Try Again</button>
-    <button class="error-btn close-btn">Close</button>
-  </div>
-</div>
+        <div class="error-content">
+          <h3>Something went wrong</h3>
+          <p class="error-message"></p>
+        </div>
+
+        <div class="error-actions">
+          <button class="error-btn retry-btn">Try Again</button>
+          <button class="error-btn close-btn">Close</button>
+        </div>
+      </div>
 
       <div class="signUp-container">
-            
-            <div class="signUp-form">
-              <div class="form-name">
-                NATION NAME
-              </div>
-              <div class="form-instruction">Enter your nation name</div>
-              <div class="inputs-container">
-                <span class="material-symbols-outlined">
-                  flag
-                </span>
-                <div class="input-bar">
-                  <input class="js-nation-input" type="text" placeholder="Enter nation name" />
-                </div>
-              </div>
-            </div>
-            
-            
-            <div class="signUp-form">
-              <div class="form-name">
-                NATION ID
-              </div>
-              <div class="form-instruction">Enter your unique politics & war nation ID</div>
-              <div class="inputs-container">
-                <span class="material-symbols-outlined">
-                  shield
-                </span>
-                <div class="input-bar">
-                  <input class="js-nation-Id-input"type="text" placeholder="Enter nation ID" />
-                </div>
-              </div>
-            </div>
-            
-            <div class="signUp-form">
-              <div class="form-name">
-                EMAIL ADDRESS
-              </div>
-              <div class="form-instruction">We'll never share your email</div>
-              <div class="inputs-container">
-                <span class="material-symbols-outlined">
-                  mail
-                </span>
-                <div class="input-bar">
-                  <input class="email-input" type="email" placeholder="Enter your email address" />
-                </div>
-              </div>
-            </div>
-            
-            <div class="signUp-form">
-              <div class="form-name">
-                PASSWORD
-              </div>
-              <div class="form-instruction">create a strong password</div>
-              <div class="inputs-container">
-                <span class="material-symbols-outlined">
-                  lock
-                </span>
-                <div class="input-bar">
-                  <input class="password-value" type="password" placeholder="Enter your password" />
-                </div> 
-                  <span class="material-symbols-outlined password-toggle">  visibility  </span>
-              </div>
-            </div>
-            
-            <div class="signUp-form">
-              <div class="form-name">
-                CONFIRM PASSWORD
-              </div>
-              <div class="form-instruction">confirm your password</div>
-              <div class="inputs-container">
-                <span class="material-symbols-outlined">
-                  lock
-                </span>
-                <div class="input-bar">
-                  <input class="js-confirm-password" type="password" placeholder="Enter your password" />
-                </div>
-                  <span class="material-symbols-outlined confirm-password-toggle">visibility</span>
-              </div>
-            </div>
-            
-            <div class="country-and-timeZone-contaimer">
-              <div class="country-selection ">
-                
-                <div class="form-name">
-                  COUNTRY
-                </div>
-                <div class="form-instruction">
-                  select your country
-                </div>
-                <div class="option-container">
-                  <span class="material-symbols-outlined">
-                    public
-                  </span>
-                  <div class="select">
-                    <select class="country-selected">
-                      <option value="" class="option">Select your country</option>
-                      
-                      <option value="us">United States</option>
-                      <option value="canada">Canada</option>
-                      <option value="uk">United Kingdom</option>
-                      <option value="australia">Australia</option>
-                      <option value="new-zealand">New Zealand</option>
-                      
-                      <option value="germany">Germany</option>
-                      <option value="france">France</option>
-                      <option value="netherlands">Netherlands</option>
-                      <option value="sweden">Sweden</option>
-                      <option value="norway">Norway</option>
-                      
-                      <option value="india">India</option>
-                      <option value="philippines">Philippines</option>
-                      <option value="singapore">Singapore</option>
-                      
-                      <option value="nigeria">Nigeria</option>
-                      <option value="south-africa">South Africa</option>
-                      
-                      <option value="brazil">Brazil</option>
-                      <option value="mexico">Mexico</option>
-                      
-                      <option value="other">Other (My country isn't listed, but please if you country isn't listed select it.)</option>
-                    </select>
-                  </div>
-                </div>
-                
-              </div>
-              
-              
-              <div class="timezone-selection">
-                
-              <div class="form-name">
-                TIMEZONE
-              </div>
-              <div class="form-instruction">
-                select your timezone
-              </div>
-              <div class="option-container">
-                <span class="material-symbols-outlined">
-                  schedule
-                </span>
-                <div class="select">
-                  <select class="timezone-select">
-                    <option value="option-timeZone" class="option-timeZone">Select your time zone</option>
-                  </select>
-                </div>
-              </div>
-              
-              </div>
-            </div>
+        <div class="signUp-form">
+          <div class="form-name">NATION NAME</div>
+          <input
+            class="js-nation-input"
+            type="text"
+            placeholder="Enter nation name"
+          />
+        </div>
+
+        <div class="signUp-form">
+          <div class="form-name">NATION ID</div>
+          <input
+            class="js-nation-Id-input"
+            type="text"
+            placeholder="Enter nation ID"
+          />
+        </div>
+
+        <div class="signUp-form">
+          <div class="form-name">EMAIL ADDRESS</div>
+          <input
+            class="email-input"
+            type="email"
+            placeholder="Enter your email address"
+          />
+        </div>
+
+        <div class="signUp-form">
+          <div class="form-name">PASSWORD</div>
+          <input
+            class="password-value"
+            type="password"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <div class="signUp-form">
+          <div class="form-name">CONFIRM PASSWORD</div>
+          <input
+            class="js-confirm-password"
+            type="password"
+            placeholder="Confirm your password"
+          />
+        </div>
+
+        <div class="country-and-timeZone-contaimer">
+          <div class="country-selection">
+            <select class="country-selected">
+              <option value="">Select your country</option>
+              <option value="us">United States</option>
+              <option value="canada">Canada</option>
+              <option value="nigeria">Nigeria</option>
+            </select>
           </div>
-       <div class="agreement">
-      <div class="checkbox">
+
+          <div class="timezone-selection">
+            <select class="timezone-select">
+              <option value="">Select your time zone</option>
+              <option value="Africa/Lagos">Africa/Lagos</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="agreement">
         <input type="checkbox" class="agree-to-terms" />
+        <span>I agree to the terms and privacy policy</span>
       </div>
-      <div>
-        I agree to the <a href="#">terms and service</a> and <a href="#">privacy policy</a>
-      </div>
-    </div>
     `;
   });
 
-  it("should make sure all require field are filled", function () {
-    const nationName = document.querySelector('.js-nation-input');
-    const nationId = document.querySelector('.js-nation-Id-input');
-    const email = document.querySelector('.email-input');
-    const countryselected = document.querySelector('.country-selected');
-    const agreeToTerms = document.querySelector('.agree-to-terms');
-    const errorCard = document.querySelector('.error-card');
-    const formErrorMessage = document.querySelector('.error-message');
-    const selectedTimezone = document.querySelector('.timezone-select');
-    const password = document.querySelector('.password-value');
-    const confirmPassword = document.querySelector('.js-confirm-password');
+  function getFormElements() {
+    return {
+      nationName: formContainer.querySelector(".js-nation-input"),
+      nationId: formContainer.querySelector(".js-nation-Id-input"),
+      email: formContainer.querySelector(".email-input"),
+      country: formContainer.querySelector(".country-selected"),
+      agreeToTerms: formContainer.querySelector(".agree-to-terms"),
+      errorCard: formContainer.querySelector(".error-card"),
+      errorMessage: formContainer.querySelector(".error-message"),
+      timezone: formContainer.querySelector(".timezone-select"),
+      password: formContainer.querySelector(".password-value"),
+      confirmPassword: formContainer.querySelector(
+        ".js-confirm-password"
+      ),
+    };
+  }
 
-    nationName.value = "";
-    nationId.value = "";
-    email.value = "";
-    confirmPassword.value = "";
-    password.value = "";
-    countryselected.value = "";
-    selectedTimezone.value = "";
-    agreeToTerms.checked = false;
+  function fillRequiredFields() {
+    const fields = getFormElements();
 
-    formValidation()
-    expect(formErrorMessage.textContent).toBe("Please fill in all required fields before creating your account.")
-  });
-
-  it("should make sure both confirm password and password do match", function () {
-    const nationName = document.querySelector('.js-nation-input');
-    const nationId = document.querySelector('.js-nation-Id-input');
-    const email = document.querySelector('.email-input');
-    const countryselected = document.querySelector('.country-selected');
-    const agreeToTerms = document.querySelector('.agree-to-terms');
-    const errorCard = document.querySelector('.error-card');
-    const formErrorMessage = document.querySelector('.error-message');
-    const selectedTimezone = document.querySelector('.timezone-select');
-    const password = document.querySelector('.password-value');
-    const confirmPassword = document.querySelector('.js-confirm-password');
-
-    nationName.value = "xxxx";
-    nationId.value = "xxx";
-    email.value = "xxxx";
-    selectedTimezone.value = "option-timeZone";
-    agreeToTerms.checked = true;
-    password.value = "12345"
-    confirmPassword.value = "125345"
-    countryselected.value = "canada"
-
-    formValidation()
-
-    expect(formErrorMessage.textContent).toBe("Please check if password match.")
-  });
-
-  it("should make sure password length is up to 8 character", function () {
-    const nationName = document.querySelector('.js-nation-input');
-    const nationId = document.querySelector('.js-nation-Id-input');
-    const email = document.querySelector('.email-input');
-    const countryselected = document.querySelector('.country-selected');
-    const agreeToTerms = document.querySelector('.agree-to-terms');
-    const errorCard = document.querySelector('.error-card');
-    const formErrorMessage = document.querySelector('.error-message');
-    const selectedTimezone = document.querySelector('.timezone-select');
-    const password = document.querySelector('.password-value');
-    const confirmPassword = document.querySelector('.js-confirm-password');
-
-    nationName.value = "xxxx";
-    nationId.value = "xxx";
-    email.value = "xxxx";
-    selectedTimezone.value = "option-timeZone";
-    agreeToTerms.checked = true;
-    password.value = "12345678"
-    confirmPassword.value = "12345678"
-    countryselected.value = "canada"
-
-    formValidation()
-
-    expect(formErrorMessage.textContent).toBe("Password requirements: At least 8 characters, including an uppercase letter, lowercase letter, number, and special character. e.g: Secure@123")
-  });
-
-  it("should make sure password is secure and having special characters and number", function () {
-    const nationName = document.querySelector('.js-nation-input');
-    const nationId = document.querySelector('.js-nation-Id-input');
-    const email = document.querySelector('.email-input');
-    const countryselected = document.querySelector('.country-selected');
-    const agreeToTerms = document.querySelector('.agree-to-terms');
-    const errorCard = document.querySelector('.error-card');
-    const formErrorMessage = document.querySelector('.error-message');
-    const selectedTimezone = document.querySelector('.timezone-select');
-    const password = document.querySelector('.password-value');
-    const confirmPassword = document.querySelector('.js-confirm-password');
-
-    nationName.value = "xxxx";
-    nationId.value = "xxx";
-    email.value = "xxxx";
-    selectedTimezone.value = "option-timeZone";
-    agreeToTerms.checked = true;
-    password.value = "Secure1123"
-    confirmPassword.value = "Secure1123"
-    countryselected.value = "canada"
-
-    formValidation()
-
-    expect(formErrorMessage.textContent).toBe("Password requirements: At least 8 characters, including an uppercase letter, lowercase letter, number, and special character. e.g: Secure@123")
-  });
-
+    fields.nationName.value = "Test Nation";
+    fields.nationId.value = "12345";
+    fields.email.value = "test@example.com";
+    fields.country.value = "canada";
+    fields.timezone.value = "Africa/Lagos";
+    fields.agreeToTerms.checked = true;
+  }
 
   afterEach(() => {
-    formContainer.remove()
+    formContainer.remove();
+  });
+
+  it("should reject when required fields are empty", function () {
+    const fields = getFormElements();
+
+    formValidation();
+
+    expect(fields.errorMessage.textContent).toBe(
+      "Please fill in all required fields before creating your account."
+    );
+    expect(fields.errorCard.style.display).toBe("block");
+  });
+
+  it("should reject when passwords do not match", function () {
+    const fields = getFormElements();
+
+    fillRequiredFields();
+    fields.password.value = "Secure@123";
+    fields.confirmPassword.value = "Secure@456";
+
+    formValidation();
+
+    expect(fields.errorMessage.textContent).toBe(
+      "Please check if password match."
+    );
+  });
+
+  it("should reject a password shorter than 8 characters", function () {
+    const fields = getFormElements();
+
+    fillRequiredFields();
+    fields.password.value = "Abc@123";
+    fields.confirmPassword.value = "Abc@123";
+
+    formValidation();
+
+    expect(fields.errorMessage.textContent).toBe(
+      "Password requirements: At least 8 characters, including an uppercase letter, lowercase letter, number, and special character. e.g: Secure@123"
+    );
+  });
+
+  it("should reject a password without a special character", function () {
+    const fields = getFormElements();
+
+    fillRequiredFields();
+    fields.password.value = "Secure1123";
+    fields.confirmPassword.value = "Secure1123";
+
+    formValidation();
+
+    expect(fields.errorMessage.textContent).toBe(
+      "Password requirements: At least 8 characters, including an uppercase letter, lowercase letter, number, and special character. e.g: Secure@123"
+    );
+  });
+
+  it("should accept valid input", function () {
+    const fields = getFormElements();
+
+    fillRequiredFields();
+    fields.password.value = "Secure@123";
+    fields.confirmPassword.value = "Secure@123";
+
+    const result = formValidation();
+
+    expect(result).toBe(true);
   });
 });
