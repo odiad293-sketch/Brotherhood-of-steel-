@@ -53,6 +53,7 @@ describe('pnwVerifier', function () {
 
   function getFormElements() {
     return {
+      formErrorMessage: formContainer.querySelector('.error-message'),
       nationName: formContainer.querySelector(".js-nation-input"),
       nationID: formContainer.querySelector(".js-nation-Id-input")
     }
@@ -67,13 +68,40 @@ describe('pnwVerifier', function () {
     fields.nationID.value = "746171";
   }
 
-  it("sould return true if nation name and id is valid", async function () {
+  it("sould return true if nation name and ID is valid", async function () {
 
     fillRequiredFields()
-    await pnwVerifier()
-    await pnwInfoCollector()
-    expect(pnwInfoCollector).toBe(true)
+    const info = await pnwInfoCollector()
+    expect(info).toBe(true)
   });
+
+  it("should return false if either nation name or ID is invalid", async function () {
+    const fields = getFormElements();
+    fields.nationName.value = "INVALID_NATION";
+    fields.nationID.value = "INVALID_ID";
+    const info = await pnwInfoCollector();
+    expect(info).toBe(false);
+  });
+
+  it("should return false if nation name and ID is empty", async function () {
+    const fields = getFormElements();
+    fields.nationName.value = "";
+    fields.nationID.value = "";
+    const info = await pnwInfoCollector();
+    expect(info).toBe(false);
+  });
+
+  it("should update the UI if nation name and ID is invalid, or if there is a server error", async function () {
+    const fields = getFormElements();
+    fillRequiredFields()
+    fields.nationName.value = "INVALID_NATION";
+    fields.nationID.value = "INVALID_ID";
+    const formErrorMessage = document.querySelector('.error-message');
+    let pnwAccVerifier = await pnwVerifier();
+    expect(formErrorMessage.textContent).toBe(pnwAccVerifier.error)
+  });
+
+
   afterEach(() => {
     formContainer.remove();
   })
