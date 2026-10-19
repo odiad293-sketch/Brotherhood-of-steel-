@@ -41,7 +41,7 @@ export async function createAccount() {
       if (currentUser) {
         window.location.href = "dashboard.html";
       }
-      
+  
     });
   } catch (error) {
     errorCard.style.display = 'block';
