@@ -4,7 +4,17 @@ import { auth, db } from '../../../firebase-config.js';
 import { scrollToErrorMessage } from '../UI.js';
 import { loadingStateManager, setLoadingState } from '../../../../utils/loading-manager.js';
 
-export async function createAccount() {
+export async function createAccount(dependencies = {}) {
+  const {
+    createUser = createUserWithEmailAndPassword,
+      saveDocument = setDoc,
+      getDocumentRef = doc,
+      timestamp = serverTimestamp,
+      observeAuthState = onAuthStateChanged,
+      scrollError = scrollToErrorMessage,
+      updateLoading = setLoadingState,
+      manageLoading = loadingStateManager
+  } = dependencies;
   
   const nationName = document.querySelector('.js-nation-input');
   const nationId = document.querySelector('.js-nation-Id-input');
@@ -16,16 +26,16 @@ export async function createAccount() {
   const selectedTimezone = document.querySelector('.timezone-select');
   const password = document.querySelector(".password-value");
   try {
-    setLoadingState(true);
-    loadingStateManager()
-    const userDoc = await createUserWithEmailAndPassword(
+    updateLoading(true);
+    manageLoading();
+    const userDoc = await createUser(
       auth,
       email.value,
       password.value
     );
     
-    const userRefres = doc(db, "users", userDoc.user.uid)
-    await setDoc(userRefres, {
+    const userRef = getDocumentRef(db, "users", userDoc.user.uid)
+    await saveDocument(userRef, {
       userName: 'unknown',
       nation: nationName.value,
       nationId: nationId.value,
@@ -34,60 +44,60 @@ export async function createAccount() {
       timezone: selectedTimezone.value,
       agreedToTerms: agreeToTerms.checked,
       role: "initiate",
-      created_At: serverTimestamp(),
+      created_At: timestamp(),
     });
     
-    onAuthStateChanged(auth, (currentUser) => {
+    observeAuthState(auth, (currentUser) => {
       if (currentUser) {
         window.location.href = "dashboard.html";
       }
-  
+      
     });
   } catch (error) {
     errorCard.style.display = 'block';
     
     if (error.code === 'auth/email-already-in-use') {
-      scrollToErrorMessage()
+      scrollError()
       formErrorMessage.textContent =
         'An account with this email already exists. Please sign in instead.';
       
     } else if (error.code === 'auth/invalid-email') {
-      scrollToErrorMessage()
+      scrollError()
       formErrorMessage.textContent =
         'Please enter a valid email address.';
       
     } else if (error.code === 'auth/weak-password') {
-      scrollToErrorMessage()
+      scrollError()
       formErrorMessage.textContent =
         'Your password is too weak. Please choose a stronger password.';
       
     } else if (error.code === 'auth/network-request-failed') {
-      scrollToErrorMessage()
+      scrollError()
       formErrorMessage.textContent =
         'Network error. Please check your internet connection and try again.';
       
     } else if (error.code === 'auth/too-many-requests') {
-      scrollToErrorMessage()
+      scrollError()
       formErrorMessage.textContent =
         'Too many attempts. Please wait a moment and try again.';
       
     } else if (error.code === 'auth/operation-not-allowed') {
-      scrollToErrorMessage()
+      scrollError()
       formErrorMessage.textContent =
         'Account creation is currently unavailable. Please try again later.';
       
     } else if (error.code === 'auth/admin-restricted-operation') {
-      scrollToErrorMessage()
+      scrollError()
       formErrorMessage.textContent =
         'Account creation is currently restricted. Please try again later.';
       
     } else {
-      scrollToErrorMessage()
+      scrollError()
       formErrorMessage.textContent =
         'We could not create your account. Please try again later.';
     }
   } finally {
-    setLoadingState(false);
-    loadingStateManager()
+    updateLoading(false);
+    manageLoading()
   }
 }

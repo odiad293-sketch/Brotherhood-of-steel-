@@ -7,7 +7,6 @@ describe("creatAccount", function () {
     beforeEach(function () {
         let email;
         let password;
-
         formContainer = document.createElement("div");
         document.body.appendChild(formContainer);
         formContainer.innerHTML = `
