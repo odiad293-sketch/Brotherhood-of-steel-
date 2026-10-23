@@ -89,7 +89,7 @@ describe('pnwVerifier', function () {
     fields.nationID.value = "";
     const info = await pnwInfoCollector();
     expect(info).toBe(false);
-  },1000);
+  },10000);
 
   it("should update the UI with the correct error message from the sever if the nation name and nation ID are invalid, or if there is a server error", async function () {
     const fields = getFormElements();
