@@ -69,41 +69,55 @@ describe('pnwVerifier', function () {
   }
 
   it("should return true if nation name and ID is valid", async function () {
-
     fillRequiredFields()
-    const info = await pnwInfoCollector()
+    let nationVerifier = jasmine.createSpy("nationVerifier");
+    nationVerifier.and.returnValue(Promise.resolve({ verified: true }))
+    let dependencies = { nationVerifier }
+    const info = await pnwInfoCollector(dependencies)
+    expect(nationVerifier).toHaveBeenCalled()
     expect(info).toBe(true)
-  },10000);
+  }, 10000);
 
   it("should return false if either nation name or ID is invalid", async function () {
     const fields = getFormElements();
     fields.nationName.value = "INVALID_NATION";
     fields.nationID.value = "INVALID_ID";
-    const info = await pnwInfoCollector();
+    let nationVerifier = jasmine.createSpy("nationVerifier");
+    nationVerifier.and.returnValue(Promise.resolve({ verified: false }))
+    let dependencies = { nationVerifier }
+    const info = await pnwInfoCollector(dependencies);
     expect(info).toBe(false);
-  },10000);
+  }, 10000);
 
   it("should return false if nation name and ID is empty", async function () {
     const fields = getFormElements();
     fields.nationName.value = "";
     fields.nationID.value = "";
-    const info = await pnwInfoCollector();
+    let nationVerifier = jasmine.createSpy("nationVerifier");
+    nationVerifier.and.returnValue(Promise.resolve({ verified: false }))
+    let dependencies = { nationVerifier }
+    const info = await pnwInfoCollector(dependencies);
     expect(info).toBe(false);
-  },10000);
+  }, 10000);
 
   it("should update the UI with the correct error message from the sever if the nation name and nation ID are invalid, or if there is a server error", async function () {
     const fields = getFormElements();
     fillRequiredFields()
     fields.nationName.value = "INVALID_NATION";
     fields.nationID.value = "INVALID_ID";
-    await pnwInfoCollector();
-    const formErrorMessage = document.querySelector('.error-message');
-    let pnwAccVerifier = await pnwVerifier();
-    expect(formErrorMessage.textContent).toBe(pnwAccVerifier.error)
-  },10000);
+    let nationVerifier = jasmine.createSpy("nationVerifier");
+    nationVerifier.and.returnValue(Promise.resolve({
+      verified: false,
+      error: "Server error, make sure nationID and nation name are valid."
+    }))
+let dependencies = { nationVerifier }
+await pnwInfoCollector(dependencies);
+const formErrorMessage = document.querySelector('.error-message');
+let pnwAccVerifier = await nationVerifier();
+expect(formErrorMessage.textContent).toBe(pnwAccVerifier.error);
+  }, 10000);
 
-
-  afterEach(() => {
-    formContainer.remove();
-  })
+afterEach(() => {
+  formContainer.remove();
+})
 });
