@@ -7,15 +7,17 @@ import { loadingStateManager, setLoadingState } from '../../../../utils/loading-
 export async function createAccount(dependencies = {}) {
   const {
     createUser = createUserWithEmailAndPassword,
-    saveDocument = setDoc,
-    getDocumentRef = doc,
-    timestamp = serverTimestamp,
-    observeAuthState = onAuthStateChanged,
-    scrollError = scrollToErrorMessage,
-    updateLoading = setLoadingState,
-    manageLoading = loadingStateManager
+      saveDocument = setDoc,
+      getDocumentRef = doc,
+      timestamp = serverTimestamp,
+      scrollError = scrollToErrorMessage,
+      updateLoading = setLoadingState,
+      manageLoading = loadingStateManager,
+      navigate = (page) => {
+        window.location.href = page
+      }
   } = dependencies;
-
+  
   const nationName = document.querySelector('.js-nation-input');
   const nationId = document.querySelector('.js-nation-Id-input');
   const email = document.querySelector('.email-input');
@@ -33,7 +35,7 @@ export async function createAccount(dependencies = {}) {
       email.value,
       password.value
     );
-
+    
     const userRef = getDocumentRef(db, "users", userDoc.user.uid)
     await saveDocument(userRef, {
       userName: 'unknown',
@@ -46,51 +48,47 @@ export async function createAccount(dependencies = {}) {
       role: "initiate",
       created_At: timestamp(),
     });
-
-    observeAuthState(auth, (currentUser) => {
-      if (currentUser) {
-        window.location.href = "dashboard.html";
-      }
-
-    });
+    
+    navigate("dashboard.html");
+    
   } catch (error) {
     errorCard.style.display = 'block';
-
+    
     if (error.code === 'auth/email-already-in-use') {
       scrollError()
       formErrorMessage.textContent =
         'An account with this email already exists. Please sign in instead.';
-
+      
     } else if (error.code === 'auth/invalid-email') {
       scrollError()
       formErrorMessage.textContent =
         'Please enter a valid email address.';
-
+      
     } else if (error.code === 'auth/weak-password') {
       scrollError()
       formErrorMessage.textContent =
         'Your password is too weak. Please choose a stronger password.';
-
+      
     } else if (error.code === 'auth/network-request-failed') {
       scrollError()
       formErrorMessage.textContent =
         'Network error. Please check your internet connection and try again.';
-
+      
     } else if (error.code === 'auth/too-many-requests') {
       scrollError()
       formErrorMessage.textContent =
         'Too many attempts. Please wait a moment and try again.';
-
+      
     } else if (error.code === 'auth/operation-not-allowed') {
       scrollError()
       formErrorMessage.textContent =
         'Account creation is currently unavailable. Please try again later.';
-
+      
     } else if (error.code === 'auth/admin-restricted-operation') {
       scrollError()
       formErrorMessage.textContent =
         'Account creation is currently restricted. Please try again later.';
-
+      
     } else {
       scrollError()
       formErrorMessage.textContent =
