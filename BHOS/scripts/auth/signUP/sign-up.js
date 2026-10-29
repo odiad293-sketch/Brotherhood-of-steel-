@@ -6,43 +6,62 @@ import { passwordVisibilityController } from '../../../utils/PVC.js';
 import { populateTimezones } from "../../../utils/timezone.js";
 import { pnwInfoCollector } from './services/nation-verification.js';
 import { createAccount } from './services/create-account.js';
- 
- 
-onAuthStateChanged(auth, (currentUser) => {
-  if (currentUser) {
-    window.location.href = "dashboard.html";
-  }
-});
+let isSigning = false;
+function signUPCoordinator(dependencies = {}) {
 
-rederSignInForm()
+  const {
+    obsaveAuthSateChange = onAuthStateChanged,
+    pwnwInfoGiver = pnwInfoCollector,
+    navigate = (page) => {
+      window.location.href = page
+    },
+    passwordVisibilityControl = passwordVisibilityController,
+    signInRedirector = signInRedirect,
+    accountCreation = createAccount,
+    authProcessor = authLogic,
+    TimezonesPopulator = populateTimezones
+  } = dependencies;
 
- const createAccoumtBtn = document.querySelector('.js-creat-account-btn');
- const signBtn = document.querySelector('.sign-in-button');
- const errorCard = document.querySelector('.error-card');
- const errorTryAgainBtn = document.querySelector('.retry-btn');
- const errorCancelBtn = document.querySelector('.close-btn');
-
-async function handleSignUp() {
-  if (formValidation() && await pnwInfoCollector()) {
-    await createAccount();
-  }
-}
-
-function authLogic() {
-   createAccoumtBtn.addEventListener('click', handleSignUp);
-   errorTryAgainBtn.addEventListener('click', handleSignUp);
-   errorCancelBtn.addEventListener('click', () => {
-    errorCard.style.display = 'none';
+  obsaveAuthSateChange(auth, (currentUser) => {
+    if (currentUser) {
+      navigate("dashboard.html")
+    }
   });
-}
 
-const signInRedirect = () => {
-  signBtn.addEventListener("click",() => {
-    window.location.href ="login.html"
-  });
-}
+  rederSignInForm()
 
-passwordVisibilityController();
-signInRedirect();
-authLogic();
-populateTimezones();
+  const createAccoumtBtn = document.querySelector('.js-creat-account-btn');
+  const signBtn = document.querySelector('.sign-in-button');
+  const errorCard = document.querySelector('.error-card');
+  const errorTryAgainBtn = document.querySelector('.retry-btn');
+  const errorCancelBtn = document.querySelector('.close-btn');
+
+  async function handleSignUp() {
+    if (isSigning) return
+    isSigning = true;
+    if (formValidation() && await pwnwInfoGiver()) {
+      await accountCreation();
+    }
+    isSigning = false;
+  }
+
+  function authLogic() {
+    createAccoumtBtn.addEventListener('click', handleSignUp);
+    errorTryAgainBtn.addEventListener('click', handleSignUp);
+    errorCancelBtn.addEventListener('click', () => {
+      errorCard.style.display = 'none';
+    });
+  }
+
+  const signInRedirect = () => {
+    signBtn.addEventListener("click", () => {
+      navigate("login.html")
+    });
+  }
+
+  passwordVisibilityControl();
+  signInRedirector();
+  authProcessor();
+  TimezonesPopulator();
+}
+signUPCoordinator()
