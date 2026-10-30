@@ -1,67 +1,88 @@
-import { formValidation } from './sign-up-validation.js';
-import { auth } from "../../firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { rederSignInForm } from "./UI.js";
-import { passwordVisibilityController } from '../../../utils/PVC.js';
-import { populateTimezones } from "../../../utils/timezone.js";
-import { pnwInfoCollector } from './services/nation-verification.js';
-import { createAccount } from './services/create-account.js';
-let isSigning = false;
-function signUPCoordinator(dependencies = {}) {
 
+import { formValidation as defaultFormValidation } from './sign-up-validation.js';
+import { auth as defaultAuth } from '../../firebase-config.js';
+import {
+  onAuthStateChanged as defaultOnAuthStateChanged
+} from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js';
+import { rederSignInForm as defaultRenderSignInForm } from './UI.js';
+import {
+  passwordVisibilityController as defaultPasswordVisibilityController
+} from '../../../utils/PVC.js';
+import {
+  populateTimezones as defaultPopulateTimezones
+} from '../../../utils/timezone.js';
+import {
+  pnwInfoCollector as defaultPnwInfoCollector
+} from './services/nation-verification.js';
+import {
+  createAccount as defaultCreateAccount
+} from './services/create-account.js';
+
+export function initSignUpPage(dependencies = {}) {
   const {
-    obsaveAuthSateChange = onAuthStateChanged,
-    pwnwInfoGiver = pnwInfoCollector,
-    navigate = (page) => {
-      window.location.href = page
-    },
-    passwordVisibilityControl = passwordVisibilityController,
-    signInRedirector = signInRedirect,
-    accountCreation = createAccount,
-    authProcessor = authLogic,
-    TimezonesPopulator = populateTimezones
+    formValidation = defaultFormValidation,
+    auth = defaultAuth,
+    onAuthStateChanged = defaultOnAuthStateChanged,
+    renderSignInForm = defaultRenderSignInForm,
+    passwordVisibilityController = defaultPasswordVisibilityController,
+    populateTimezones = defaultPopulateTimezones,
+    pnwInfoCollector = defaultPnwInfoCollector,
+    createAccount = defaultCreateAccount,
+    documentRef = document,
+    windowRef = window
   } = dependencies;
 
-  obsaveAuthSateChange(auth, (currentUser) => {
-    if (currentUser) {
-      navigate("dashboard.html")
-    }
-  });
+  let isSigning = false;
 
-  rederSignInForm()
+  renderSignInForm();
 
-  const createAccoumtBtn = document.querySelector('.js-creat-account-btn');
-  const signBtn = document.querySelector('.sign-in-button');
-  const errorCard = document.querySelector('.error-card');
-  const errorTryAgainBtn = document.querySelector('.retry-btn');
-  const errorCancelBtn = document.querySelector('.close-btn');
+  const createAccountBtn = documentRef.querySelector(
+    '.js-creat-account-btn'
+  );
+  const signInBtn = documentRef.querySelector('.sign-in-button');
+  const errorCard = documentRef.querySelector('.error-card');
+  const errorTryAgainBtn = documentRef.querySelector('.retry-btn');
+  const errorCancelBtn = documentRef.querySelector('.close-btn');
 
   async function handleSignUp() {
-    if (isSigning) return
+    if (isSigning) return;
+
     isSigning = true;
-    if (formValidation() && await pwnwInfoGiver()) {
-      await accountCreation();
+
+    try {
+      if (formValidation() && await pnwInfoCollector()) {
+        await createAccount();
+      }
+    } finally {
+      isSigning = false;
     }
-    isSigning = false;
   }
 
   function authLogic() {
-    createAccoumtBtn.addEventListener('click', handleSignUp);
+    createAccountBtn.addEventListener('click', handleSignUp);
     errorTryAgainBtn.addEventListener('click', handleSignUp);
+
     errorCancelBtn.addEventListener('click', () => {
       errorCard.style.display = 'none';
     });
   }
 
-  const signInRedirect = () => {
-    signBtn.addEventListener("click", () => {
-      navigate("login.html")
+  function signInRedirect() {
+    signInBtn.addEventListener('click', () => {
+      windowRef.location.href = 'login.html';
     });
   }
 
-  passwordVisibilityControl();
-  signInRedirector();
-  authProcessor();
-  TimezonesPopulator();
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      windowRef.location.href = 'dashboard.html';
+    }
+  });
+
+  passwordVisibilityController();
+  signInRedirect();
+  authLogic();
+  populateTimezones();
+
+  return { handleSignUp };
 }
-signUPCoordinator()
